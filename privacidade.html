@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Termos e Privacidade | RAC</title>
+
+        <script src="https://redeapostolica.com.br/assets/js/loader.js"></script>
+
+        <script>
+            App_load.loadStyle(
+                "@fortawesome/fontawesome-free/css/all.min.css",
+                "node",
+            );
+            App_load.loadStyle("style.css", "app");
+            App_load.loadStyle(
+                "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@300;400;600;900&display=swap",
+            );
+        </script>
+
+        <style>
+            :root {
+                --primary-navy: #1a202c;
+                --accent-gold: #c5a059;
+                --dusty-gold: #f1ede1;
+                --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            }
+
+            body {
+                background-color: #fcfcfb;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* --- HEADER EDITORIAL --- */
+            .policy-hero {
+                padding: 160px 5% 80px;
+                background: var(--dusty-gold);
+                text-align: center;
+            }
+
+            .policy-container {
+                max-width: 900px;
+                margin: -40px auto 100px;
+                padding: 0 5%;
+                position: relative;
+                z-index: 2;
+            }
+
+            .policy-card {
+                background: var(--white);
+                padding: 60px;
+                border-radius: 24px;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+                border: 1px solid rgba(0, 0, 0, 0.02);
+            }
+
+            /* --- TIPOGRAFIA E CONTEÚDO --- */
+            .content-block {
+                margin-bottom: 50px;
+                font-family: "Plus Jakarta Sans", sans-serif;
+                line-height: 1.8;
+                color: #4a5568;
+            }
+
+            .content-block h2 {
+                font-family: "Outfit", sans-serif;
+                font-size: 1.8rem;
+                font-weight: 900;
+                color: var(--primary-navy);
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .content-block h2::before {
+                content: "";
+                width: 8px;
+                height: 24px;
+                background: var(--accent-gold);
+                border-radius: 4px;
+            }
+
+            .highlight-box {
+                background: #f9f9f7;
+                padding: 30px;
+                border-radius: 12px;
+                border-left: 4px solid var(--accent-gold);
+                margin: 25px 0;
+            }
+
+            .info-list {
+                list-style: none;
+                padding: 0;
+            }
+
+            .info-list li {
+                margin-bottom: 15px;
+                display: flex;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .info-list i {
+                color: var(--accent-gold);
+                margin-top: 5px;
+                font-size: 1.1rem;
+            }
+
+            /* --- ANIMAÇÃO FADE-UP --- */
+            .fade-up {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.8s var(--ease-out);
+            }
+
+            .fade-up.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            @media (max-width: 768px) {
+                .policy-card {
+                    padding: 30px;
+                }
+                .policy-hero {
+                    padding-top: 120px;
+                }
+                .content-block h2 {
+                    font-size: 1.5rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="site-header"></div>
+
+        <main>
+            <section class="policy-hero">
+                <div class="fade-up">
+                    <span
+                        style="
+                            font-size: 0.9rem;
+                            font-weight: 800;
+                            color: var(--accent-gold);
+                            letter-spacing: 5px;
+                            text-transform: uppercase;
+                        "
+                        >Transparência</span
+                    >
+                    <h1
+                        style="
+                            font-family: &quot;Outfit&quot;;
+                            font-size: clamp(2.5rem, 7vw, 4.5rem);
+                            font-weight: 900;
+                            color: var(--primary-navy);
+                            line-height: 1;
+                            margin: 20px 0;
+                        "
+                    >
+                        TERMOS DE
+                        <span style="color: var(--accent-gold)">USO</span>
+                    </h1>
+                    <p style="opacity: 0.6; max-width: 600px; margin: 0 auto">
+                        Saiba como cuidamos dos seus dados, seus direitos sob a
+                        LGPD e como funciona nossa política de imagem em
+                        eventos.
+                    </p>
+                </div>
+            </section>
+
+            <div class="policy-container">
+                <div class="policy-card fade-up">
+                    <section class="content-block">
+                        <h2>Proteção de Dados</h2>
+                        <p>
+                            A
+                            <strong>Rede Apostólica Cristã (RAC)</strong> trata
+                            a sua privacidade com seriedade ministerial. Os
+                            dados coletados para inscrições em treinamentos,
+                            eventos ou newsletters seguem protocolos rigorosos:
+                        </p>
+                        <div class="highlight-box">
+                            <ul class="info-list">
+                                <li>
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <span
+                                        ><strong>Criptografia:</strong> Seus
+                                        dados sensíveis são processados em
+                                        ambiente seguro e criptografado.</span
+                                    >
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-user-check"></i>
+                                    <span
+                                        ><strong>Uso Interno:</strong> As
+                                        informações são de uso exclusivo para
+                                        logística de eventos e comunicação
+                                        oficial da secretaria da RAC.</span
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="content-block">
+                        <h2>Seus Direitos (LGPD)</h2>
+                        <p>
+                            Em conformidade com a Lei Geral de Proteção de
+                            Dados, garantimos a você o total controle sobre suas
+                            informações pessoais mantidas em nossa base:
+                        </p>
+                        <ul class="info-list" style="margin-top: 20px">
+                            <li>
+                                <i class="fa-solid fa-fingerprint"></i>
+                                <span
+                                    ><strong>Acesso e Confirmação:</strong> Você
+                                    pode solicitar a confirmação de que tratamos
+                                    seus dados e acessar uma cópia dos
+                                    mesmos.</span
+                                >
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-user-slash"></i>
+                                <span
+                                    ><strong>Revogação:</strong> O consentimento
+                                    para envio de newsletters ou comunicações
+                                    pode ser retirado a qualquer momento através
+                                    de nossos canais oficiais.</span
+                                >
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="content-block">
+                        <h2>Imagem e Transmissão</h2>
+                        <p>
+                            Nossos cultos e conferências são momentos de
+                            celebração pública e expansão do Reino. Ao
+                            participar de nossos eventos presenciais, você
+                            declara ciência de que:
+                        </p>
+                        <ul class="info-list" style="margin-top: 20px">
+                            <li>
+                                <i class="fa-solid fa-youtube"></i>
+                                <span
+                                    ><strong>Transmissão Digital:</strong>
+                                    Cultos são transmitidos ao vivo no YouTube,
+                                    onde sua imagem pode aparecer de forma
+                                    incidental.</span
+                                >
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-camera"></i>
+                                <span
+                                    ><strong>Registros Oficiais:</strong>
+                                    Fotografias são realizadas para publicação
+                                    em nossas redes sociais com finalidade
+                                    exclusivamente institucional.</span
+                                >
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="content-block">
+                        <h2>Menores de Idade</h2>
+                        <p>
+                            A proteção de nossas crianças é prioridade. O
+                            tratamento de dados de menores (como em inscrições
+                            para o RAC Kids) é realizado com o consentimento
+                            específico dos pais ou responsáveis, sendo utilizado
+                            estritamente para segurança e identificação durante
+                            os eventos.
+                        </p>
+                    </section>
+
+                    <section class="content-block">
+                        <h2>Propriedade Intelectual</h2>
+                        <p>
+                            Todo o conteúdo disponibilizado em nossa biblioteca
+                            de estudos, trilhas de treinamento e artes gráficas
+                            são de propriedade da <strong>RAC</strong>. O
+                            compartilhamento para fins de edificação é
+                            encorajado, desde que respeitada a integridade do
+                            material e citada a fonte original.
+                        </p>
+                    </section>
+
+                    <section
+                        class="content-block"
+                        style="
+                            margin-bottom: 0;
+                            text-align: center;
+                            border-top: 1px solid #f0f0f0;
+                            padding-top: 40px;
+                        "
+                    >
+                        <p style="font-size: 0.9rem; margin-bottom: 20px">
+                            Dúvidas, correções ou solicitações de remoção de
+                            dados?
+                        </p>
+                        <a
+                            href="mailto:contato@redeapostolica.com.br"
+                            style="
+                                display: inline-block;
+                                padding: 15px 40px;
+                                background: var(--primary-navy);
+                                color: var(--white);
+                                border-radius: 50px;
+                                text-decoration: none;
+                                font-weight: 800;
+                                transition: 0.3s;
+                            "
+                        >
+                            contato@redeapostolica.com.br
+                        </a>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <div id="site-footer"></div>
+
+        <script src="./assets/js/config.js"></script>
+        <script src="./assets/js/components.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                // Inicializa componentes globais (Header/Footer)
+                if (window.renderHeader) window.renderHeader("site-header");
+                if (window.renderFooter) window.renderFooter("site-footer");
+
+                // Sistema de Animação de Scroll
+                const reveal = () => {
+                    document.querySelectorAll(".fade-up").forEach((el) => {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight * 0.9) {
+                            el.classList.add("active");
+                        }
+                    });
+                };
+
+                window.addEventListener("scroll", reveal);
+                setTimeout(reveal, 200); // Trigger inicial
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Biblioteca de Estudos | RAC</title>
+
+        <script src="https://redeapostolica.com.br/assets/js/loader.js"></script>
+
+        <script>
+            App_load.loadStyle(
+                "@fortawesome/fontawesome-free/css/all.min.css",
+                "node",
+            );
+            App_load.loadStyle("style.css", "app");
+            App_load.loadStyle("estudos.css", "app");
+            App_load.loadStyle(
+                "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@300;400;600;900&display=swap",
+            );
+        </script>
+    </head>
+    <body>
+        <div id="site-header"></div>
+
+        <section class="archive-hero">
+            <div class="hero-content fade-up">
+                <span
+                    style="
+                        color: var(--accent-gold);
+                        font-weight: 800;
+                        letter-spacing: 2px;
+                        text-transform: uppercase;
+                        font-size: 0.75rem;
+                    "
+                    >Recursos e Conteúdo</span
+                >
+                <h1
+                    style="
+                        font-family: &quot;Outfit&quot;;
+                        font-weight: 900;
+                        font-size: 3rem;
+                    "
+                >
+                    Biblioteca de Estudos
+                </h1>
+            </div>
+        </section>
+
+        <div class="toolbar fade-up">
+            <div class="search-box">
+                <i class="fa-solid fa-search" class="search"></i>
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Pesquisar por título ou tema..."
+                />
+            </div>
+
+            <div class="filter-group">
+                <select id="filterTipo" onchange="applyFilters()">
+                    <option value="">Todos os estudos</option>
+                    <option value="estudos_da_celula">Estudos da Célula</option>
+                    <option value="ministerio_profetico">
+                        Ministério Profético
+                    </option>
+                    <option value="guerra_espiritual">Guerra Espiritual</option>
+                    <option value="ministerio_apostolico">
+                        Ministério Apostólico
+                    </option>
+                    <option value="ministerio_de_liberacao">
+                        Ministério de Liberação
+                    </option>
+                    <option value="estudos_liderancas">
+                        Estudos / Liderança
+                    </option>
+                    <option value="cura_interior">Cura Interior</option>
+                    <option value="louvor_e_adoracao">Louvor e Adoração</option>
+                    <option value="pastores_publicacoes">
+                        Pastores / Publicações
+                    </option>
+                </select>
+
+                <select id="filterOrdem" onchange="applyFilters()">
+                    <option value="newest">Mais Recentes</option>
+                    <option value="oldest">Mais Antigos</option>
+                    <option value="title">Título (A-Z)</option>
+                </select>
+            </div>
+
+            <div class="view-options">
+                <button
+                    onclick="changeLayout('grid')"
+                    id="gridBtn"
+                    class="view-btn active"
+                >
+                    <i class="fa-solid fa-table fa-lg"></i>
+                </button>
+                <button
+                    onclick="changeLayout('list')"
+                    id="listBtn"
+                    class="view-btn"
+                >
+                    <i class="fa-solid fa-list fa-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <main class="studies-container">
+            <div id="studiesGrid"></div>
+            <div id="pagination" class="pagination fade-up"></div>
+        </main>
+
+        <div id="site-footer"></div>
+
+        <script>
+            App_load.loadModules(["config.js", "components.js"], "app", () => {
+                const urlParams = new URLSearchParams(window.location.search);
+
+                let state = {
+                    page: 1,
+                    category: urlParams.get("category") || "", // Pega da URL ou vazio
+                    search: "",
+                    order: "newest",
+                    totalPages: 1,
+                };
+
+                // 2. Sincroniza o select do HTML com a categoria da URL
+                if (state.category) {
+                    const filterTipo = document.getElementById("filterTipo");
+                    if (filterTipo) filterTipo.value = state.category;
+                }
+
+                async function loadContent() {
+                    const grid = document.getElementById("studiesGrid");
+                    if (!grid) return;
+
+                    grid.style.opacity = "0.5";
+
+                    try {
+                        // Monta a URL usando o formato da sua API real
+                        const query = `${CONFIG.ENDPOINTS.ESTUDOS}?page=${state.page}&category=${state.category}&title=${encodeURIComponent(state.search)}&order=${state.order}&limit=12`;
+
+                        const res = await fetch(CONFIG.API_BASE_URL + query);
+                        const json = await res.json();
+
+                        // Verificação baseada no formato real: { data: [...], pagination: {...} }
+                        if (json.data && json.data.length > 0) {
+                            grid.innerHTML = json.data
+                                .map((item) => {
+                                    // Pequeno ajuste para formatar a data se desejar
+                                    const dataFormatada = new Date(
+                                        item.published_at,
+                                    ).toLocaleDateString("pt-BR");
+                                    return window.createStudyCard({
+                                        ...item,
+                                        date: dataFormatada, // Passa a data formatada para o card
+                                    });
+                                })
+                                .join("");
+
+                            // Atualiza o estado com base no objeto "pagination" retornado
+                            state.totalPages = json.pagination.pages;
+                            state.page = json.pagination.page;
+
+                            renderPagination();
+                        } else {
+                            grid.innerHTML =
+                                '<div style="grid-column: 1/-1; text-align: center; padding: 50px;">Nenhum estudo encontrado.</div>';
+                        }
+                    } catch (err) {
+                        console.error("Erro ao carregar estudos:", err);
+                        grid.innerHTML =
+                            '<div style="grid-column: 1/-1; text-align: center; padding: 50px;">Erro de conexão com o servidor.</div>';
+                    }
+
+                    grid.style.opacity = "1";
+                    if (typeof revealContent === "function") revealContent();
+                }
+
+                function renderPagination() {
+                    const container = document.getElementById("pagination");
+                    if (!container) return;
+
+                    container.innerHTML = "";
+                    if (state.totalPages <= 1) return;
+
+                    const createBtn = (
+                        content,
+                        targetPage,
+                        disabled = false,
+                        active = false,
+                    ) => {
+                        const btn = document.createElement("button");
+                        btn.className = `page-btn ${active ? "active" : ""}`;
+                        btn.innerHTML = content;
+                        btn.disabled = disabled;
+                        if (!disabled)
+                            btn.onclick = () => window.goToPage(targetPage);
+                        return btn;
+                    };
+
+                    // Botões de navegação
+                    container.appendChild(
+                        createBtn(
+                            '<i class="fa-solid fa-angle-left"></i>',
+                            state.page - 1,
+                            state.page === 1,
+                        ),
+                    );
+
+                    // Lógica simples de páginas numeradas
+                    let start = Math.max(1, state.page - 2);
+                    let end = Math.min(state.totalPages, state.page + 2);
+
+                    for (let i = start; i <= end; i++) {
+                        container.appendChild(
+                            createBtn(i, i, false, i === state.page),
+                        );
+                    }
+
+                    container.appendChild(
+                        createBtn(
+                            '<i class="fa-solid fa-angle-right"></i>',
+                            state.page + 1,
+                            state.page === state.totalPages,
+                        ),
+                    );
+                }
+
+                window.changeLayout = function (type) {
+                    const grid = document.getElementById("studiesGrid");
+                    const gridBtn = document.getElementById("gridBtn");
+                    const listBtn = document.getElementById("listBtn");
+
+                    if (!grid) return;
+
+                    // Aplica a classe ao container
+                    grid.className =
+                        type === "grid"
+                            ? "grid-view fade-up active"
+                            : "list-view fade-up active";
+
+                    // Atualiza os botões
+                    if (gridBtn)
+                        gridBtn.classList.toggle("active", type === "grid");
+                    if (listBtn)
+                        listBtn.classList.toggle("active", type === "list");
+
+                    // Salva a preferência do usuário (opcional)
+                    localStorage.setItem("preferred_layout", type);
+                };
+
+                window.applyFilters = () => {
+                    state.category =
+                        document.getElementById("filterTipo").value;
+                    state.order = document.getElementById("filterOrdem").value;
+                    state.search = document.getElementById("searchInput").value;
+                    state.page = 1;
+                    loadContent();
+                };
+
+                window.goToPage = (p) => {
+                    state.page = p;
+                    loadContent();
+                    window.scrollTo({ top: 350, behavior: "smooth" });
+                };
+
+                let timer;
+                document
+                    .getElementById("searchInput")
+                    .addEventListener("input", () => {
+                        clearTimeout(timer);
+                        timer = setTimeout(applyFilters, 500);
+                    });
+
+                if (typeof initRAC === "function") {
+                    initRAC();
+                }
+                loadContent();
+                window.addEventListener("scroll", revealContent);
+            });
+        </script>
+    </body>
+</html>

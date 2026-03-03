@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem Somos | RAC</title>
+    
+    <script src="https://redeapostolica.com.br/assets/js/loader.js"></script>
+
+    <script>
+        App_load.loadStyle(
+            "@fortawesome/fontawesome-free/css/all.min.css",
+            "node",
+        );
+        App_load.loadStyle("style.css", "app");
+        App_load.loadStyle(
+            "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@300;400;600;900&display=swap",
+        );
+    </script>
+    
+    <style>
+        :root {
+            --primary-navy: #1a202c;
+            --accent-gold: #c5a059;
+            --dusty-gold: #f1ede1;
+            --soft-white: #f8f9fa;
+            --ease-out: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body { background-color:var(--white); color: var(--primary-navy); font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        /* --- HERO PREMIUM --- */
+        .archive-hero {
+            padding: 140px 5% 80px;
+            background: linear-gradient(135deg, #f1ede1 0%, #eaddca 100%);
+            text-align: center;
+            clip-path: ellipse(150% 100% at 50% 0%);
+        }
+
+        .archive-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(3.5rem, 10vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .archive-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--accent-gold);
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* --- INTRODUÇÃO IMPACTANTE --- */
+        .intro-container {
+            max-width: 1200px;
+            margin: -60px auto 100px;
+            padding: 0 5%;
+        }
+
+        .intro-glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 80px;
+            border-radius: 40px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.07);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+
+        .quote-box {
+            border-left: 2px solid var(--accent-gold);
+            padding-left: 30px;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: #4a5568;
+        }
+
+        /* --- CARDS COM DESIGN EDITORIAL --- */
+        .editorial-section {
+            background: var(--soft-white);
+            padding: 120px 5%;
+        }
+
+        .section-header {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .section-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+        }
+
+        .grid-cards {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .premium-card {
+            background:var(--white);
+            padding: 60px;
+            border-radius: 4px; /* Estilo mais sóbrio/editorial */
+            border-bottom: 4px solid transparent;
+            transition: all 0.5s var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-15px);
+            border-bottom-color: var(--accent-gold);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+        }
+
+        .premium-card span {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--dusty-gold);
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            opacity: 0.5;
+        }
+
+        /* --- VISÃO DAS IGREJAS (LISTA ELEGANTE) --- */
+        .vision-list {
+            max-width: 900px;
+            margin: 100px auto;
+            padding: 0 5%;
+        }
+
+        .vision-item {
+            display: flex;
+            align-items: baseline;
+            gap: 30px;
+            padding: 30px 0;
+            border-bottom: 1px solid #eee;
+            transition: 0.3s;
+        }
+
+        .vision-item:hover {
+            padding-left: 20px;
+            color: var(--accent-gold);
+        }
+
+        .vision-num {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300;
+            font-size: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .vision-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* --- ANIMAÇÕES CONSTANTES --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 992px) {
+            .intro-grid { grid-template-columns: 1fr; }
+            .intro-glass { padding: 40px; }
+            .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .vision-text { font-size: 1.3rem; }
+        }
+
+        /* Grid Compacta: cards menores (min 220px) */
+    .pastors-grid-compact {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 30px;
+    }
+
+    .pastor-card-mini {
+        background: transparent;
+        transition: transform 0.4s var(--ease-out);
+    }
+
+    .pastor-media {
+        position: relative;
+        width: 100%;
+        padding-top: 130%; /* Proporção elegante e vertical */
+        border-radius: 8px;
+        overflow: hidden;
+        background: #f0f0f0;
+    }
+
+    .pastor-media img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(100%);
+        transition: 0.6s ease;
+    }
+
+    /* Redes Sociais sempre visíveis */
+    .pastor-social-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        z-index: 2;
+    }
+
+    .pastor-social-bar a {
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        color:var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: 0.3s;
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .pastor-social-bar a:hover {
+        background: var(--accent-gold);
+        border-color: var(--accent-gold);
+        transform: translateY(-3px);
+    }
+
+    /* Efeito Hover no Card */
+    .pastor-card-mini:hover {
+        transform: translateY(-8px);
+    }
+
+    .pastor-card-mini:hover img {
+        filter: grayscale(0%);
+    }
+
+    /* Textos do Pastor */
+    .pastor-meta {
+        padding: 15px 0;
+        text-align: center;
+    }
+
+    .pastor-role {
+        font-size: 0.65rem;
+        font-weight: 800;
+        color: var(--accent-gold);
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .pastor-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: var(--primary-navy);
+        margin: 0;
+    }
+
+    /* Mobile: 2 colunas para não ficar gigante */
+    @media (max-width: 480px) {
+        .pastors-grid-compact {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .pastor-title { font-size: 1rem; }
+        .pastor-media { border-radius: 4px; }
+        .pastor-social-bar { padding: 8px; gap: 8px; }
+        .pastor-social-bar a { width: 28px; height: 28px; font-size: 0.8rem; }
+    }
+    </style>
+</head>
+<body>
+
+    <div id="site-header"></div>
+
+    <section class="archive-hero">
+        <div class="reveal">
+            <p>Rede Apostólica Cristã</p>
+            <h1>O Propósito <br> que nos Une.</h1>
+        </div>
+    </section>
+
+    <main>
+        <section class="intro-container">
+            <div class="intro-glass reveal">
+                <div class="intro-grid">
+                    <div class="intro-text">
+                        <h2>Unidos debaixo de uma liderança apostólica.</h2>
+                        <p style="font-size: 1.2rem; line-height: 1.8; color: #4a5568;">
+                            A <strong>Rede Apostólica Cristã</strong> é um conjunto de igrejas e ministérios aliançados com a finalidade de se fortalecer, crescer e multiplicar pela potencialização de suas forças.
+                        </p>
+                    </div>
+                    <div class="quote-box">
+                        "Jesus disse que o Reino de Deus é semelhante a uma rede." <br>
+                        <small style="font-size: 0.9rem; font-weight: 800; color: var(--accent-gold);">(Mt 13:47)</small>
+                    </div>
+                </div>
+                <p style="margin-top: 50px; font-size: 1.1rem; opacity: 0.8; max-width: 800px;">
+                    Quanto mais nos aproximamos do estabelecimento do Reino de Deus na terra, mais semelhante a uma rede será a estrutura da igreja. Trazemos visão, unção e estrutura para a conquista das cidades.
+                </p>
+            </div>
+        </section>
+
+        <section class="editorial-section">
+            <div class="section-header reveal">
+                <h2>Visão da Rede</h2>
+                <p style="max-width: 400px; font-weight: 600; color: var(--accent-gold);">Implantação e sustentação de igrejas fortes e crescentes.</p>
+            </div>
+
+            <div class="grid-cards">
+                <div class="premium-card reveal">
+                    <span>01</span>
+                    <h3 style="font-family:'Outfit'; font-size: 1.8rem; margin-bottom: 20px;">Igrejas Aliançadas</h3>
+                    <p style="line-height: 1.8; color: #4a5568;">Um conjunto de igrejas locais e autônomas que se unem debaixo de uma liderança apostólico-profética para se fortalecerem mutuamente.</p>
+                </div>
+                <div class="premium-card reveal">
+                    <span>02</span>
+                    <h3 style="font-family:'Outfit'; font-size: 1.8rem; margin-bottom: 20px;">Expansão do Reino</h3>
+                    <p style="line-height: 1.8; color: #4a5568;">O objetivo principal é o estabelecimento e a expansão do Reino de Deus através da implantação estratégica de novas frentes ministeriais.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="padding: 120px 5%; max-width: 1200px; margin: 0 auto;">
+            <div class="intro-grid">
+                <div class="reveal">
+                    <h2 style="font-family:'Outfit'; font-size: 3rem; font-weight: 900; margin-bottom: 30px;">Duas Estruturas, <br>um só objetivo.</h2>
+                    <p style="opacity: 0.7;">Operacionalização através de sistemas interdependentes e autogovernáveis.</p>
+                </div>
+                <div class="reveal">
+                    <div style="margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 30px;">
+                        <h4 style="color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Presbitério Local</h4>
+                        <p>Pastores e líderes que governam e pastoreiam a igreja local, sustentando a expansão em sua própria localidade.</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Equipes Apostólicas</h4>
+                        <p>Responsáveis pela expansão além das fronteiras, estabelecendo a igreja onde o evangelho ainda não chegou.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="padding: 100px 5%; background: #000; color:var(--white);">
+            <div class="reveal" style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-family:'Outfit'; font-size: 3rem;">Visão das Igrejas Locais</h2>
+            </div>
+            
+            <div class="vision-list">
+                <div class="vision-item reveal"><div class="vision-num">01</div><div class="vision-text">Cada cristão tem um propósito.</div></div>
+                <div class="vision-item reveal"><div class="vision-num">02</div><div class="vision-text">O propósito de cada cristão é fazer discípulos.</div></div>
+                <div class="vision-item reveal"><div class="vision-num">03</div><div class="vision-text">Discípulos são melhor gerados em uma célula.</div></div>
+                <div class="vision-item reveal"><div class="vision-num">04</div><div class="vision-text">As células se multiplicam num modelo de excelência.</div></div>
+                <div class="vision-item reveal"><div class="vision-num">05</div><div class="vision-text">Um modelo de excelência é para ser vivido hoje.</div></div>
+                <div class="vision-item reveal"><div class="vision-num">06</div><div class="vision-text">Vivendo o propósito hoje, se é feliz.</div></div>
+            </div>
+        </section>
+
+        <section style="padding: 150px 5%; background: var(--white); position: relative; overflow: hidden;">
+            
+            <div style="position: absolute; top: 0; right: 0; font-family: 'Outfit'; font-size: 20vw; font-weight: 900; color: #f9f9f9; z-index: 0; pointer-events: none; line-height: 1;">
+                FAMILY
+            </div>
+
+            <div style="max-width: 1300px; margin: 0 auto; position: relative; z-index: 1;">
+                
+                <div class="reveal" style="margin-bottom: 100px;">
+                    <p style="color: var(--accent-gold); font-weight: 800; letter-spacing: 5px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 15px;">Governo e Paternidade</p>
+                    <h2 style="font-family: 'Outfit'; font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 900; color: var(--primary-navy); line-height: 1;">Liderança Apostólica.</h2>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 100px; align-items: center;">
+                    
+                    <div class="reveal" style="position: relative;">
+                        <div style="display: flex; gap: 30px; align-items: stretch;">
+                            <div style="writing-mode: vertical-rl; transform: rotate(180deg); display: flex; justify-content: center; align-items: center; border-left: 1px solid #ddd; padding-left: 15px;">
+                                <span style="font-family: 'Outfit'; font-weight: 300; font-size: 0.8rem; letter-spacing: 5px; color: #999; text-transform: uppercase;">Structure & Vision</span>
+                            </div>
+                            
+                            <div style="flex: 1;">
+                                <div style="position: relative; margin-bottom: 40px; border-radius: 0 100px 0 0; overflow: hidden; box-shadow: 30px 30px 0px var(--accent-gold);">
+                                    <img src="./uploads/607195463_18416621782190950_6006464027258355086_n.webp" 
+                                        style="width: 100%; height: 650px; object-fit: cover; filter: sepia(20%) contrast(1.1);">
+                                </div>
+                                <h3 style="font-family: 'Outfit'; font-size: 3rem; font-weight: 900; margin-bottom: 10px;">Ricardo Wagner</h3>
+                                <p style="color: var(--accent-gold); font-weight: 700; letter-spacing: 2px; margin-bottom: 25px; text-transform: uppercase;">Apóstolo</p>
+                                <p style="font-size: 1.15rem; line-height: 1.8; color: #555; text-align: justify; font-weight: 300;">
+                                    Uma liderança forjada na paternidade e na visão estratégica. O seu chamado é estabelecer o governo de Deus através de igrejas fortes, aliançadas e preparadas para a conquista territorial.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal">
+                        <div style="display: flex; flex-direction: column;">
+                            <div style="position: relative; margin-bottom: 40px; border-radius: 100px 0 0 0; overflow: hidden; box-shadow: -30px 30px 0px var(--dusty-gold);">
+                                <img src="./uploads/443889537_433024029517390_6952968581147184652_n.jpg" 
+                                    style="width: 100%; height: 650px; object-fit: cover; filter: sepia(10%) contrast(1.1);">
+                            </div>
+                            
+                            <div style="padding-left: 40px; border-left: 2px solid var(--accent-gold);">
+                                <h3 style="font-family: 'Outfit'; font-size: 3rem; font-weight: 900; margin-bottom: 10px;">Eneida Wagner</h3>
+                                <p style="color: var(--primary-navy); font-weight: 700; letter-spacing: 2px; margin-bottom: 25px; text-transform: uppercase;">Profeta</p>
+                                <p style="font-size: 1.15rem; line-height: 1.8; color: #555; text-align: justify; font-weight: 300;">
+                                    Portadora de uma palavra rhema que ativa destinos e traz clareza ao mover espiritual. O seu ministério é a unção que flui para edificar a igreja e sensibilizar o corpo ao Espírito Santo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 5%;">
+            <div style="height: 1px; background: linear-gradient(to right, transparent, #eee, var(--accent-gold), #eee, transparent);"></div>
+        </div>
+
+        <section style="padding: 100px 5%; max-width: 1200px; margin: 0 auto;">
+            
+            <div class="reveal" style="text-align: center; margin-bottom: 60px;">
+                <p style="color: var(--accent-gold); font-weight: 800; letter-spacing: 4px; text-transform: uppercase; font-size: 0.65rem; margin-bottom: 12px;">Corpo Ministerial</p>
+                <h2 style="font-family: 'Outfit'; font-size: 2.8rem; font-weight: 900; color: var(--primary-navy); line-height: 1;">Pastores da RAC</h2>
+            </div>
+
+            <div class="pastors-grid-compact">
+                
+                <div class="pastor-card-mini reveal">
+                    <div class="pastor-media">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600" alt="Pastor">
+                        <div class="pastor-social-bar">
+                            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+                    <div class="pastor-meta">
+                        <span class="pastor-role">PASTOR</span>
+                        <h4 class="pastor-title">Nome do Pastor</h4>
+                    </div>
+                </div>
+
+                <div class="pastor-card-mini reveal">
+                    <div class="pastor-media">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600" alt="Pastora">
+                        <div class="pastor-social-bar">
+                            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="pastor-meta">
+                        <span class="pastor-role">PASTORA</span>
+                        <h4 class="pastor-title">Nome da Pastora</h4>
+                    </div>
+                </div>
+
+                <div class="pastor-card-mini reveal">
+                    <div class="pastor-media">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600" alt="Pastor">
+                        <div class="pastor-social-bar">
+                            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="pastor-meta">
+                        <span class="pastor-role">PASTOR</span>
+                        <h4 class="pastor-title">Nome do Pastor</h4>
+                    </div>
+                </div>
+
+                <div class="pastor-card-mini reveal">
+                    <div class="pastor-media">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600" alt="Pastora">
+                        <div class="pastor-social-bar">
+                            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="pastor-meta">
+                        <span class="pastor-role">PASTORA</span>
+                        <h4 class="pastor-title">Nome da Pastora</h4>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    <div id="site-footer"></div>
+
+    <script src="./assets/js/config.js"></script>
+    <script src="./assets/js/components.js"></script>
+    
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.renderHeader) window.renderHeader('site-header');
+            if (window.renderFooter) window.renderFooter('site-footer');
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

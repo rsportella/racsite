@@ -1,0 +1,81 @@
+{
+    "encontro_com_deus": {
+        "level": "Nível 00",
+        "title": "Encontro com Deus",
+        "icon": "shoe-prints",
+        "image": "https://redeapostolica.com.br/uploads/cp_encontro_com_deus.jpg",
+        "desc": "",
+        "lessons": [""],
+        "link": "estudos?category=encontro_com_deus"
+    },
+    "primeiros_passos": {
+        "level": "Nível 01",
+        "title": "Primeiros Passos",
+        "icon": "shoe-prints",
+        "image": "https://redeapostolica.com.br/uploads/cp_primeiros_passos.jpg",
+        "desc": "O curso de <b>Primeiros Passos</b> tem a duração de aproximadamente 3 encontros e é destinado a todos que estão iniciando a sua vida de fé.",
+        "lessons": [
+            "A Criação e a Queda",
+            "Salvação",
+            "O Batismo nas Águas",
+            "A Ceia",
+            "Visão da Igreja"
+        ],
+        "link": "estudos?category=estudos_da_celula"
+    },
+    "libertacao": {
+        "level": "Nível 02",
+        "title": "Libertação",
+        "icon": "shield-heart",
+        "image": "https://redeapostolica.com.br/uploads/cp_libertacao.jpg",
+        "desc": "Remova barreiras espirituais e viva a plenitude do Reino.",
+        "lessons": [
+            "Quebra de Cadeias",
+            "Cura Interior",
+            "Identificando Barreiras"
+        ],
+        "link": "estudos?category=ministerio_de_liberacao"
+    },
+    "fundamentos": {
+        "level": "Nível 03",
+        "title": "Fundamentos",
+        "icon": "book-open",
+        "image": "https://redeapostolica.com.br/uploads/cp_fundamentos.jpg",
+        "desc": "O Curso de Fundamentos foca em construir um alicerce sólido através da prática da vida cristã.",
+        "lessons": [
+            "O Propósito Eterno",
+            "Fé e Arrependimento",
+            "Oração",
+            "Comunhão Diária"
+        ],
+        "link": "estudos?category=fundamentos"
+    },
+    "lideranca": {
+        "level": "Nível 04",
+        "title": "Liderança",
+        "icon": "users",
+        "image": "https://redeapostolica.com.br/uploads/cp_lideranca.jpg",
+        "desc": "Capacitação intensiva de 15 encontros para líderes de células.",
+        "lessons": [
+            "Igreja em Células",
+            "Evangelismo",
+            "Consolidação",
+            "Guerra Espiritual"
+        ],
+        "link": "estudos?category=estudos_liderancas"
+    },
+    "espirito_santo": {
+        "level": "Nível 05",
+        "title": "Espírito Santo",
+        "icon": "fire",
+        "image": "https://redeapostolica.com.br/uploads/cp_espirito_santo.jpg",
+        "desc": "Conheça a pessoa, os dons e o batismo com o Consolador.",
+        "lessons": [
+            "Quem é o Espírito Santo",
+            "Batismo com o Espírito",
+            "Os Dons",
+            "O Jejum"
+        ],
+        "link": "estudos?category=curso_espirito_santo"
+    }
+}

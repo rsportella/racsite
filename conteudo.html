@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Estudo | RAC</title>
+        <meta
+            name="description"
+            content="Leia os estudos e artigos da Rede Apostólica Cristã."
+        />
+
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="RAC - Rede Apostólica Cristã" />
+        <meta property="og:title" id="og-title" content="Estudo RAC" />
+        <meta
+            property="og:description"
+            id="og-description"
+            content="Leia este estudo completo no portal da RAC."
+        />
+        <meta property="og:image" id="og-image" content="" />
+        <meta property="og:url" id="og-url" content="" />
+
+        <script src="https://redeapostolica.com.br/assets/js/loader.js"></script>
+
+        <script>
+            App_load.loadStyle(
+                "@fortawesome/fontawesome-free/css/all.min.css",
+                "node",
+            );
+            App_load.loadStyle("style.css", "app");
+            App_load.loadStyle(
+                "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@300;400;600;900&display=swap",
+            );
+        </script>
+
+        <style>
+            body {
+                padding-top: 120px;
+                background-color: #f5f5f3;
+            }
+
+            .main-container {
+                max-width: 1300px;
+                margin: 0 auto;
+                padding: 0 5% 100px;
+                display: grid;
+                grid-template-columns: 1fr 340px;
+                gap: 60px;
+            }
+
+            /* --- HEADER DO ARTIGO --- */
+            .article-header {
+                margin-bottom: 40px;
+            }
+            .category-tag {
+                color: var(--accent-gold);
+                font-weight: 800;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                display: block;
+                margin-bottom: 15px;
+            }
+            .main-title {
+                font-family: "Outfit";
+                font-size: clamp(2.5rem, 5vw, 3.8rem);
+                color: var(--deep-navy);
+                line-height: 1.05;
+                font-weight: 900;
+                letter-spacing: -1px;
+            }
+
+            .reading-meta {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-top: 20px;
+                font-size: 0.75rem;
+                font-weight: 700;
+                color: #888;
+                text-transform: uppercase;
+            }
+
+            .banner-img {
+                width: 100%;
+                border-radius: 24px;
+                margin: 40px 0;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+            }
+            .content-body {
+                font-size: 1.25rem;
+                line-height: 1.9;
+                color: #333;
+            }
+
+            /* --- SHARE BOX --- */
+            .share-box {
+                margin: 60px 0;
+                padding: 40px;
+                background: var(--white);
+                border-radius: 24px;
+                border: 1px solid rgba(0, 0, 0, 0.05);
+            }
+            .share-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 15px;
+                margin-top: 25px;
+            }
+            .share-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                padding: 12px;
+                border-radius: 12px;
+                text-decoration: none;
+                font-weight: 800;
+                font-size: 0.75rem;
+                transition: 0.3s;
+                border: none;
+                cursor: pointer;
+            }
+            .btn-wa {
+                background: #25d366;
+                color: var(--white);
+            }
+            .btn-pdf {
+                background: var(--deep-navy);
+                border: 1px solid var(--accent-gold);
+            }
+            .btn-copy {
+                background: #f0f0f0;
+                color: var(--deep-navy);
+            }
+            .share-btn:hover {
+                transform: translateY(-3px);
+                opacity: 0.9;
+            }
+
+            /* --- LEIA A SEGUIR --- */
+            .suggest-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                margin-top: 80px;
+                margin-bottom: 30px;
+            }
+            .btn-view-all {
+                padding: 10px 24px;
+                border-radius: 50px;
+                border: 2px solid var(--deep-navy);
+                color: var(--deep-navy);
+                text-decoration: none;
+                font-weight: 800;
+                font-size: 0.75rem;
+                transition: 0.3s;
+            }
+            .btn-view-all:hover {
+                background: var(--deep-navy);
+                color: var(--white);
+            }
+            .suggest-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            /* --- SIDEBAR --- */
+            .sidebar-sticky {
+                position: sticky;
+                top: 140px;
+            }
+            .widget {
+                background: var(--white);
+                padding: 30px;
+                border-radius: 20px;
+                margin-bottom: 30px;
+                border: 1px solid rgba(0, 0, 0, 0.03);
+            }
+            .widget-title {
+                font-family: "Outfit";
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                font-weight: 900;
+                color: var(--deep-navy);
+                margin-bottom: 25px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .widget-title::before {
+                content: "";
+                width: 4px;
+                height: 14px;
+                background: var(--accent-gold);
+                border-radius: 2px;
+            }
+
+            .tag-cloud {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .tag-pill {
+                background: #f8f8f8;
+                color: var(--deep-navy);
+                padding: 8px 14px;
+                border-radius: 8px;
+                font-size: 0.7rem;
+                font-weight: 800;
+                text-decoration: none;
+                transition: 0.3s;
+            }
+            .tag-pill:hover {
+                background: var(--deep-navy);
+                color: var(--white);
+            }
+
+            #loader {
+                position: fixed;
+                inset: 0;
+                background: #f5f5f3;
+                z-index: 9999;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            @media (max-width: 1024px) {
+                .main-container {
+                    grid-template-columns: 1fr;
+                }
+                .suggest-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="loader"><div class="spinner"></div></div>
+
+        <main class="main-container">
+            <article>
+                <div class="article-header">
+                    <span id="art-cat" class="category-tag"></span>
+                    <h1 id="art-title" class="main-title"></h1>
+
+                    <div class="reading-meta">
+                        <span id="art-date"></span>
+                        <span style="opacity: 0.3">•</span>
+                        <span
+                            ><i class="fa-solid fa-clock"></i>
+                            <span id="reading-time"></span> MIN DE LEITURA</span
+                        >
+                    </div>
+                </div>
+
+                <img id="art-banner" src="" class="banner-img" />
+                <div id="art-content" class="content-body"></div>
+
+                <div class="share-box">
+                    <h3
+                        style="
+                            font-family: &quot;Outfit&quot;;
+                            font-weight: 900;
+                            color: var(--deep-navy);
+                        "
+                    >
+                        Compartilhe Conhecimento
+                    </h3>
+                    <div class="share-grid">
+                        <a
+                            href="#"
+                            id="share-wa"
+                            class="share-btn btn-wa"
+                            target="_blank"
+                            ><i class="fa-brands fa-whatsapp"></i> WHATSAPP</a
+                        >
+                        <button
+                            onclick="window.print()"
+                            class="share-btn btn-pdf"
+                        >
+                            <i class="fa-solid fa-file-pdf"></i> SALVAR PDF
+                        </button>
+                        <button onclick="copyLink()" class="share-btn btn-copy">
+                            <i class="fa-solid fa-link"></i> COPIAR LINK
+                        </button>
+                    </div>
+                </div>
+
+                <section>
+                    <div class="suggest-header">
+                        <h2
+                            style="
+                                font-family: &quot;Outfit&quot;;
+                                font-weight: 900;
+                                color: var(--deep-navy);
+                            "
+                        >
+                            Leia a seguir
+                        </h2>
+                        <a href="estudos" class="btn-view-all"
+                            >BIBLIOTECA COMPLETA
+                            <i
+                                class="fa-solid fa-arrow-right"
+                                style="margin-left: 8px"
+                            ></i
+                        ></a>
+                    </div>
+                    <div id="suggest-grid" class="suggest-grid"></div>
+                </section>
+            </article>
+
+            <aside>
+                <div class="sidebar-sticky">
+                    <aside>
+                        <div class="sidebar-sticky">
+                            <div class="widget">
+                                <h3 class="widget-title">O Autor</h3>
+                                <div
+                                    style="
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 12px;
+                                        margin-bottom: 15px;
+                                    "
+                                >
+                                    <img
+                                        id="side-author-img"
+                                        src=""
+                                        style="
+                                            width: 55px;
+                                            height: 55px;
+                                            border-radius: 50%;
+                                            border: 2px solid var(--accent-gold);
+                                            object-fit: cover;
+                                        "
+                                    />
+                                    <div>
+                                        <strong
+                                            id="side-author-name"
+                                            style="
+                                                font-size: 0.95rem;
+                                                color: var(--deep-navy);
+                                                display: block;
+                                            "
+                                        ></strong>
+                                        <a
+                                            id="side-author-ig"
+                                            href="#"
+                                            target="_blank"
+                                            style="
+                                                font-size: 0.75rem;
+                                                color: #c5a059;
+                                                text-decoration: none;
+                                                font-weight: 700;
+                                            "
+                                        >
+                                            <i
+                                                class="fa-brands fa-instagram"
+                                            ></i>
+                                            INSTAGRAM
+                                        </a>
+                                    </div>
+                                </div>
+                                <p
+                                    id="author-bio"
+                                    style="
+                                        font-size: 0.85rem;
+                                        color: #777;
+                                        line-height: 1.6;
+                                    "
+                                ></p>
+                            </div>
+
+                            <div class="widget">
+                                <h3 class="widget-title">Explorar Temas</h3>
+                                <div id="tag-cloud" class="tag-cloud"></div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </aside>
+        </main>
+
+        <script>
+            App_load.loadModules(["config.js", "components.js"], "app", () => {
+                function calculateReadingTime(html) {
+                    const text = html.replace(/<[^>]*>/g, ""); // Remove tags HTML
+                    const words = text.trim().split(/\s+/).length;
+                    const wordsPerMinute = 225;
+                    return Math.ceil(words / wordsPerMinute);
+                }
+
+                async function loadContent() {
+                    const slug = new URLSearchParams(
+                        window.location.search,
+                    ).get("slug");
+
+                    if (!slug) {
+                        window.location.href = "estudos";
+                        return;
+                    }
+
+                    try {
+                        const query = `${CONFIG.ENDPOINTS.ESTUDOS}/${slug}`;
+
+                        const res = await fetch(CONFIG.API_BASE_URL + query);
+
+                        const json = await res.json();
+
+                        renderArticle(json);
+                        loadTags();
+                        loadSuggestions();
+                        //updateDynamicMeta(data);
+                    } catch (e) {
+                        console.error(e);
+                    } finally {
+                        document.getElementById("loader").style.display =
+                            "none";
+                    }
+                }
+
+                function renderArticle(item) {
+                    document.getElementById("art-title").innerText = item.title;
+                    document.getElementById("art-cat").innerText =
+                        item.category_name;
+                    document.getElementById("art-content").innerHTML =
+                        item.content;
+
+                    // Dados do Autor no Widget
+                    document.getElementById("side-author-name").innerText =
+                        item.author_name;
+
+                    // Bio: Se for null ou vazia, usa um texto padrão
+                    const bioPadrao = `${item.author_name} é um colaborador dedicado da Rede Apostólica Cristã.`;
+                    document.getElementById("author-bio").innerText =
+                        item.author_bio || bioPadrao;
+
+                    // Instagram: Extrai o username da URL e adiciona o @
+                    const igLink = document.getElementById("side-author-ig");
+                    if (item.author_instagram) {
+                        // Pega a URL, remove barras extras no final e extrai o último segmento
+                        const urlParts = item.author_instagram
+                            .replace(/\/+$/, "")
+                            .split("/");
+                        const username = urlParts[urlParts.length - 1];
+
+                        igLink.href = item.author_instagram;
+                        igLink.innerHTML = `<i class="fa-brands fa-instagram"></i> ${username}`;
+                        igLink.style.display = "inline-block";
+                    } else {
+                        igLink.style.display = "none";
+                    }
+
+                    // Imagem do Autor
+                    document.getElementById("side-author-img").src =
+                        item.author_image;
+
+                    // Tempo de Leitura e Data
+                    document.getElementById("reading-time").innerText =
+                        calculateReadingTime(item.content);
+                    const dateStr = item.published_at.startsWith("0000")
+                        ? item.created_at
+                        : item.published_at;
+                    document.getElementById("art-date").innerText = new Date(
+                        dateStr,
+                    ).toLocaleDateString("pt-BR", {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric",
+                    });
+
+                    // Banner Principal
+                    if (item.image_path)
+                        document.getElementById("art-banner").src =
+                            item.image_path;
+                    else
+                        document.getElementById("art-banner").style.display =
+                            "none";
+
+                    document.getElementById("share-wa").href =
+                        `https://wa.me/?text=${encodeURIComponent(item.title + " - " + window.location.href)}`;
+                }
+
+                async function loadTags() {
+                    try {
+                        const res = await fetch(
+                            `${CONFIG.API_BASE_URL}${CONFIG.ENDPOINTS.ESTUDOS}`,
+                        );
+                        const json = await res.json();
+
+                        if (json.success && json.data) {
+                            // Filtra nomes de categorias únicos e remove valores nulos/vazios
+                            const tags = [
+                                ...new Set(
+                                    json.data.map((i) => i.category_name),
+                                ),
+                            ].filter((t) => t);
+                            const tagContainer =
+                                document.getElementById("tag-cloud");
+                            const widget = tagContainer.closest(".widget"); // Seleciona o container do widget
+
+                            if (tags.length > 0) {
+                                tagContainer.innerHTML = tags
+                                    .map(
+                                        (t) =>
+                                            `<a href="estudos?search=${encodeURIComponent(t)}" class="tag-pill">${t}</a>`,
+                                    )
+                                    .join("");
+                                widget.style.display = "block"; // Garante que está visível se houver dados
+                            } else {
+                                widget.style.display = "none"; // Esconde o widget se o array for vazio
+                            }
+                        }
+                    } catch (e) {
+                        console.error("Erro ao carregar tags:", e);
+                        // Em caso de erro na API, também escondemos o widget
+                        const tagContainer =
+                            document.getElementById("tag-cloud");
+                        if (tagContainer)
+                            tagContainer.closest(".widget").style.display =
+                                "none";
+                    }
+                }
+
+                async function loadSuggestions() {
+                    const res = await fetch(
+                        `${CONFIG.API_BASE_URL}${CONFIG.ENDPOINTS.ESTUDOS}?limit=2&order=RAND`,
+                    );
+                    const json = await res.json();
+                    if (json.data && Array.isArray(json.data)) {
+                        document.getElementById("suggest-grid").innerHTML =
+                            json.data
+                                .map((item) => window.createStudyCard(item))
+                                .join("");
+                    }
+                }
+
+                function copyLink() {
+                    navigator.clipboard.writeText(window.location.href);
+                    alert("Link copiado!");
+                }
+
+                // Dentro da função que recebe os dados do estudo (ex: item)
+                function updateDynamicMeta(item) {
+                    const pageUrl = window.location.href;
+                    const cleanExcerpt = item.excerpt
+                        ? item.excerpt.replace(/<[^>]*>/g, "").substring(0, 160)
+                        : "";
+                    const imageUrl = item.image_path;
+
+                    // Atualiza o Título e Descrição comuns
+                    document.title = `${item.title} | RAC`;
+
+                    // Atualiza as tags Open Graph (WhatsApp/FB)
+                    document
+                        .querySelector('meta[property="og:title"]')
+                        .setAttribute("content", item.title);
+                    document
+                        .querySelector('meta[property="og:description"]')
+                        .setAttribute("content", cleanExcerpt);
+                    document
+                        .querySelector('meta[property="og:image"]')
+                        .setAttribute("content", imageUrl);
+                    document
+                        .querySelector('meta[property="og:url"]')
+                        .setAttribute("content", pageUrl);
+                }
+
+                if (typeof initRAC === "function") {
+                    initRAC();
+                }
+                loadContent();
+            });
+        </script>
+    </body>
+</html>

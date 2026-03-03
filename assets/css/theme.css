@@ -1,0 +1,32 @@
+:root {
+    --primary-navy: #1e2a43;
+    --accent-gold: #c5a059;
+    --dusty-gold: #f1ede1;
+    --white: #fff;
+
+    /* Cores de Apoio */
+    --bg-sage: #e7ede9;
+    --bg-blue: #e2e8f0;
+    --success-green: #2ecc71;
+    --error-red: #e74c3c;
+
+    /* Animações e Transições */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s var(--ease-out);
+}
+.fade-up.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+.section-label {
+    font-weight: 800;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+}

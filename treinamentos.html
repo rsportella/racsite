@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Trilha de Treinamentos | RAC</title>
+
+        <script src="https://redeapostolica.com.br/assets/js/loader.js"></script>
+
+        <script>
+            App_load.loadStyle(
+                "@fortawesome/fontawesome-free/css/all.min.css",
+                "node",
+            );
+            App_load.loadStyle("style.css", "app");
+            App_load.loadStyle(
+                "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@300;400;600;900&display=swap",
+            );
+        </script>
+
+        <style>
+            :root {
+                --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+                --cloud-dancer: #f2f0eb;
+                --deep-navy: #15194d;
+                --accent-gold: #c5a059;
+                --dusty-gold: #eaddca;
+            }
+
+            body {
+                background-color: #fbfbfb;
+                margin: 0;
+                padding: 0;
+                font-family: "Plus Jakarta Sans", sans-serif;
+                overflow-x: hidden;
+            }
+
+            /* HERO SECTION */
+            .archive-hero {
+                padding: 140px 5% 80px;
+                background: linear-gradient(135deg, #f1ede1 0%, #eaddca 100%);
+                text-align: center;
+                clip-path: ellipse(150% 100% at 50% 0%);
+            }
+            .hero-content {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            .section-label {
+                font-weight: 800;
+                letter-spacing: 2px;
+                color: var(--accent-gold);
+                font-size: 0.8rem;
+            }
+            .hero-text {
+                font-size: 1.05rem;
+                line-height: 1.7;
+                color: var(--deep-navy);
+                opacity: 0.7;
+                margin-top: 20px;
+            }
+
+            /* CONTAINER DA TRILHA */
+            .trilha-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                position: relative;
+                padding: 80px 5% 15vh;
+            }
+
+            /* Linha Central Decorativa */
+            .trilha-container::before {
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: rgba(0, 0, 0, 0.08);
+                transform: translateX(-50%);
+                z-index: 1;
+            }
+
+            .trilha-progress-line {
+                position: absolute;
+                left: 50%;
+                top: 0;
+                width: 2px;
+                background: var(--accent-gold);
+                transform: translateX(-50%);
+                height: 0%;
+                z-index: 2;
+                transition: height 0.1s linear;
+            }
+
+            /* CARDS DA TRILHA */
+            .trilha-step {
+                min-height: 320px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+                z-index: 3;
+                margin-bottom: 100px;
+                transition: all 0.6s var(--ease-out);
+            }
+
+            .trilha-content {
+                width: 44%;
+                background: var(--white);
+                display: flex;
+                flex-direction: row; /* Imagem na lateral */
+                border-radius: 25px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+                border: 2px solid transparent;
+                transition: all 0.5s var(--ease-out);
+                overflow: hidden;
+                transform: scale(0.95);
+            }
+
+            .card-image {
+                width: 180px;
+                min-width: 180px;
+                height: auto;
+                object-fit: cover;
+            }
+
+            .card-body {
+                padding: 30px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex-grow: 1;
+            }
+
+            .trilha-step.active .trilha-content {
+                transform: scale(1.05);
+                border-color: var(--accent-gold);
+                box-shadow: 0 20px 50px rgba(197, 160, 89, 0.2);
+            }
+
+            .trilha-icon-circle {
+                width: 60px;
+                height: 60px;
+                background: var(--deep-navy);
+                color: var(--accent-gold);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                border: 6px solid #fbfbfb;
+                z-index: 4;
+                transition: all 0.5s ease;
+            }
+
+            .trilha-step.active .trilha-icon-circle {
+                background: var(--accent-gold);
+                color: var(--white);
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+
+            .trilha-step:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+
+            /* MODAL CUSTOMIZADO */
+            .modal-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(21, 25, 77, 0.7);
+                backdrop-filter: blur(10px);
+                display: none;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                padding: 20px;
+            }
+            .modal-overlay.active {
+                display: flex;
+            }
+
+            .modal-content {
+                background: var(--white);
+                width: 100%;
+                max-width: 850px;
+                border-radius: 35px;
+                overflow: hidden;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                max-height: 90vh;
+            }
+
+            .close-modal-btn {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                border: none;
+                background: var(--white);
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                z-index: 10;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            @media (min-width: 769px) {
+                .modal-content {
+                    flex-direction: row;
+                    height: 550px;
+                }
+                #modalImg {
+                    width: 40%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                .modal-body-content {
+                    width: 60%;
+                    padding: 45px;
+                    overflow-y: auto;
+                }
+            }
+
+            /* RESPONSIVIDADE MOBILE */
+            @media (max-width: 768px) {
+                .trilha-container::before,
+                .trilha-progress-line {
+                    left: 25px;
+                    transform: none;
+                }
+                .trilha-step {
+                    flex-direction: row !important;
+                    justify-content: flex-start;
+                    margin-bottom: 50px;
+                    min-height: auto;
+                }
+                .trilha-content {
+                    width: calc(100% - 60px);
+                    margin-left: 50px;
+                    flex-direction: column;
+                    transform: none !important;
+                }
+                .card-image {
+                    width: 100%;
+                    height: 160px;
+                }
+                .trilha-icon-circle {
+                    left: 25px;
+                    top: 40px;
+                    transform: translateX(-50%) scale(0.8) !important;
+                }
+                .trilha-step > div:last-child {
+                    display: none;
+                }
+                #modalImg {
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                }
+                .modal-body-content {
+                    padding: 25px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header-placeholder"></div>
+
+        <section class="archive-hero">
+            <div class="hero-content">
+                <span class="section-label">FORMAÇÃO DISCIPULAR</span>
+                <h1
+                    style="
+                        font-size: clamp(2.2rem, 5vw, 3.8rem);
+                        font-family: &quot;Outfit&quot;, sans-serif;
+                        color: var(--deep-navy);
+                        margin: 15px 0;
+                    "
+                >
+                    Jornada de Crescimento
+                </h1>
+                <p class="hero-text">
+                    Transforme sua caminhada cristã através de uma trilha de
+                    aprendizado contínuo, do básico à liderança avançada.
+                </p>
+            </div>
+        </section>
+
+        <div class="trilha-container">
+            <div class="trilha-progress-line" id="progressLine"></div>
+            <div id="stepsWrapper"></div>
+        </div>
+
+        <div id="footer-placeholder"></div>
+
+        <div
+            id="courseModal"
+            class="modal-overlay"
+            onclick="if (event.target == this) closeModal();"
+        >
+            <div class="modal-content">
+                <button onclick="closeModal()" class="close-modal-btn">
+                    <i class="fa-solid fa-x"></i>
+                </button>
+                <img id="modalImg" src="" alt="Capa" />
+                <div class="modal-body-content">
+                    <span
+                        id="modalLevel"
+                        class="section-label"
+                        style="font-size: 0.7rem"
+                    ></span>
+                    <h2
+                        id="modalTitle"
+                        style="
+                            font-size: 2rem;
+                            color: var(--deep-navy);
+                            margin: 10px 0;
+                            font-family: &quot;Outfit&quot;, sans-serif;
+                        "
+                    ></h2>
+                    <div
+                        id="modalDesc"
+                        style="
+                            font-size: 0.95rem;
+                            opacity: 0.7;
+                            line-height: 1.6;
+                            margin-bottom: 25px;
+                        "
+                    ></div>
+
+                    <h3
+                        style="
+                            font-size: 0.9rem;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+                            margin-bottom: 15px;
+                            color: var(--accent-gold);
+                        "
+                    >
+                        Conteúdo do Curso:
+                    </h3>
+                    <ul
+                        id="modalLessons"
+                        style="
+                            list-style: none;
+                            padding: 0;
+                            margin-bottom: 30px;
+                        "
+                    ></ul>
+                </div>
+            </div>
+        </div>
+
+        <script src="./assets/js/config.js"></script>
+        <script src="./assets/js/components.js"></script>
+
+        <script>
+            let courseData = {};
+            let isScrollingToHash = false;
+
+            async function init() {
+                try {
+                    const res = await fetch("treinamentos.json");
+                    courseData = await res.json();
+                    render();
+
+                    setTimeout(() => {
+                        checkInitialFocus();
+                        handleScroll();
+                    }, 500);
+                } catch (e) {
+                    console.error("Erro ao carregar dados:", e);
+                }
+            }
+
+            function render() {
+                const wrapper = document.getElementById("stepsWrapper");
+                if (!wrapper) return;
+
+                wrapper.innerHTML = Object.keys(courseData)
+                    .map(
+                        (key) => `
+                <div class="trilha-step" id="${key}">
+                    <div class="trilha-content">
+                        <img src="${courseData[key].image}" class="card-image" alt="Capa">
+                        <div class="card-body">
+                            <span class="section-label" style="font-size: 0.65rem;">${courseData[key].level}</span>
+                            <h2 style="margin: 8px 0; font-size: 1.4rem; color: var(--deep-navy); font-family: 'Outfit', sans-serif;">${courseData[key].title}</h2>
+                            <p style="opacity: 0.7; line-height: 1.5; font-size: 0.85rem; margin-bottom: 20px;">
+                                ${courseData[key].desc.substring(0, 85)}...
+                            </p>
+                            <button class="btn-trilha" style="border:none; background:var(--dusty-gold); padding:10px 22px; cursor:pointer; font-weight:800; font-size:0.75rem; align-self: flex-start;" onclick="openModal('${key}')">VEJA MAIS</button>
+                        </div>
+                    </div>
+                    <div class="trilha-icon-circle"><i class="fa-solid fa-${courseData[key].icon}"></i></div>
+                    <div style="width: 44%;"></div>
+                </div>
+            `,
+                    )
+                    .join("");
+            }
+
+            function handleScroll() {
+                if (isScrollingToHash) return;
+                const steps = document.querySelectorAll(".trilha-step");
+                const winH = window.innerHeight;
+                const center = winH / 2;
+
+                steps.forEach((step) => {
+                    const rect = step.getBoundingClientRect();
+                    const stepMid = rect.top + rect.height / 2;
+
+                    if (
+                        stepMid > center - winH / 4 &&
+                        stepMid < center + winH / 4
+                    ) {
+                        if (!step.classList.contains("active")) {
+                            step.classList.add("active");
+                            history.replaceState(null, null, "#" + step.id);
+                        }
+                    } else {
+                        step.classList.remove("active");
+                    }
+                });
+
+                const container = document
+                    .querySelector(".trilha-container")
+                    .getBoundingClientRect();
+                const line = document.getElementById("progressLine");
+                if (line) {
+                    let prog =
+                        ((winH / 2 - container.top) / container.height) * 100;
+                    line.style.height = Math.min(Math.max(prog, 0), 100) + "%";
+                }
+            }
+
+            function openModal(key) {
+                const data = courseData[key];
+                document.getElementById("modalImg").src = data.image;
+                document.getElementById("modalLevel").innerText = data.level;
+                document.getElementById("modalTitle").innerText = data.title;
+                document.getElementById("modalDesc").innerHTML = data.desc;
+                document.getElementById("modalLessons").innerHTML = data.lessons
+                    .map(
+                        (l) =>
+                            `<li style="padding:10px 0; border-bottom:1px solid #f0f0f0; display:flex; align-items:center; gap:10px; font-size:0.9rem;">
+                    <i class="fa-solid fa-check-circle-2" style="width:16px; color:var(--accent-gold);"></i> ${l}
+                </li>`,
+                    )
+                    .join("");
+
+                document.getElementById("courseModal").classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeModal() {
+                document
+                    .getElementById("courseModal")
+                    .classList.remove("active");
+                document.body.style.overflow = "auto";
+            }
+
+            function checkInitialFocus() {
+                const hash = window.location.hash.substring(1);
+                if (hash && courseData[hash]) {
+                    const target = document.getElementById(hash);
+                    if (target) {
+                        isScrollingToHash = true;
+                        const bodyRect = document.body.getBoundingClientRect();
+                        const elemRect = target.getBoundingClientRect();
+                        const centerPosition =
+                            elemRect.top -
+                            bodyRect.top +
+                            target.offsetHeight / 2 -
+                            window.innerHeight / 2;
+                        window.scrollTo({
+                            top: centerPosition,
+                            behavior: "smooth",
+                        });
+                        setTimeout(() => {
+                            isScrollingToHash = false;
+                            handleScroll();
+                        }, 800);
+                    }
+                }
+            }
+
+            window.addEventListener("scroll", handleScroll);
+            window.addEventListener("load", init);
+        </script>
+    </body>
+</html>

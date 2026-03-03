@@ -1,0 +1,641 @@
+@import url("theme.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background-color: var(--white);
+    color: var(--primary-navy); /* Variável puxada do theme.css */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 2. HERO PADRÃO (Archive Hero) */
+.archive-hero {
+    padding: 160px 5% 100px;
+    background: linear-gradient(135deg, var(--dusty-gold) 0%, #eaddca 100%);
+    text-align: center;
+    position: relative;
+    clip-path: ellipse(150% 100% at 50% 0%);
+}
+
+/* --- HEADER --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px; /* Altura padrão levemente maior para o respiro inicial */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    z-index: 1000;
+    transition: all 0.5s var(--ease-out);
+    background: rgba(245, 245, 243, 0.01); /* Quase transparente */
+}
+
+/* Estado ativado pelo JS no componente ao scrollar */
+header.scrolled {
+    height: 70px;
+    background: rgba(245, 245, 243, 0.85); /* Fundo sutil */
+    backdrop-filter: blur(15px); /* Efeito de vidro jateado */
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    font-family: "Outfit", sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: var(--deep-navy);
+    text-decoration: none;
+    letter-spacing: -1px;
+}
+
+/* --- MENU MOBILE --- */
+/* --- ESTILOS BASE DO HEADER --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    z-index: 1000;
+    transition: all 0.4s var(--ease-out);
+    background: transparent;
+}
+
+header.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--primary-navy);
+    height: 75px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.header-left,
+.header-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.header-right {
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+/* Navegação Desktop */
+.nav-container {
+    display: none;
+} /* Escondido no mobile */
+.desktop-socials {
+    display: none;
+} /* Escondido no mobile */
+
+@media (min-width: 1024px) {
+    .nav-container {
+        display: flex;
+        justify-content: center;
+        gap: 35px;
+        flex: 2;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: var(--deep-navy);
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: 0.3s;
+    }
+
+    .nav-link:hover {
+        color: var(--accent-gold);
+    }
+
+    /* Dropdown Desktop */
+    .nav-dropdown {
+        position: relative;
+    }
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(15px);
+        background: var(--white);
+        min-width: 200px;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        padding: 15px 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s var(--ease-out);
+    }
+    .nav-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(5px);
+    }
+    .dropdown-menu a {
+        display: block;
+        padding: 10px 25px;
+        color: var(--deep-navy);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: 0.2s;
+    }
+    .dropdown-menu a:hover {
+        background: #f8f8f8;
+        color: var(--accent-gold);
+    }
+
+    .desktop-socials {
+        display: flex;
+        gap: 18px;
+    }
+    .desktop-socials a {
+        color: var(--deep-navy);
+        font-size: 1.2rem;
+        transition: 0.3s;
+    }
+    .desktop-socials a:hover {
+        color: var(--accent-gold);
+        transform: translateY(-2px);
+    }
+
+    .mobile-trigger {
+        display: none;
+    }
+}
+
+/* --- MENU MOBILE (OVERLAY) --- */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Fora da tela */
+    width: 100%;
+    height: 100vh;
+    background: var(--deep-navy);
+    z-index: 2000;
+    transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-menu-header {
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.close-trigger {
+    color: var(--white);
+    cursor: pointer;
+    padding: 10px;
+}
+
+.mobile-menu-content {
+    flex: 1;
+    padding: 40px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+}
+
+/* Tipografia e Links Mobile */
+.mobile-links a,
+.dropdown-trigger {
+    color: var(--white);
+    font-family: "Outfit", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-dropdown .dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.4s ease-out;
+    padding-left: 20px;
+}
+
+.mobile-dropdown.open .dropdown-content {
+    max-height: 300px; /* Expande o dropdown */
+    margin-bottom: 20px;
+}
+
+.dropdown-content a {
+    font-size: 1.15rem !important;
+    font-weight: 500 !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+/* Footer do Menu Mobile */
+.mobile-menu-footer {
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-footer p {
+    color: var(--accent-gold);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.mobile-socials {
+    display: flex;
+    gap: 20px;
+}
+.mobile-socials a {
+    color: var(--white);
+    font-size: 1.8rem;
+}
+
+/* Gatilho Mobile */
+.mobile-trigger {
+    color: var(--deep-navy);
+    cursor: pointer;
+    padding: 5px;
+}
+header.scrolled .mobile-trigger {
+    color: var(--deep-navy);
+}
+
+/* Botão Filiar-se no Desktop */
+.btn-filiar {
+    background: var(--deep-navy);
+    color: var(--white);
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.btn-filiar:hover {
+    background: var(--accent-gold);
+    transform: translateY(-2px);
+}
+
+/* Ocultar navegação desktop em telas pequenas */
+.nav-container {
+    display: none;
+    gap: 30px;
+}
+
+.nav-link {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--deep-navy);
+    letter-spacing: 2px;
+}
+
+@media (min-width: 1024px) {
+    .nav-container {
+        display: flex;
+    }
+    #mobileBtn {
+        display: none;
+    } /* Esconde o ícone de menu no desktop */
+}
+
+/* --- FOOTER DEFINITIVO --- */
+footer {
+    padding: 100px 5% 50px;
+    background: var(--white);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* 12 colunas fixas */
+    gap: 40px;
+    align-items: start;
+    width: 100%;
+}
+
+/* O Logo ocupa 4 colunas (1/3 da tela) */
+footer .footer-logo-area {
+    grid-column: span 4;
+}
+
+footer img {
+    width: 10rem;
+    filter: grayscale(100%);
+    transition: filter 0.5s ease; /* Transição suave para a cor voltar */
+}
+
+footer img:hover {
+    filter: grayscale(0%);
+}
+
+/* A Navegação ocupa 8 colunas e se alinha à direita */
+footer .footer-nav {
+    grid-column: span 8;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas de assuntos */
+    gap: 20px;
+    justify-items: end; /* REÚNE PARA O CANTO DIREITO */
+    text-align: right;
+}
+
+footer .footer-nav h4 {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    color: var(--accent-gold);
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+footer .footer-nav ul {
+    list-style: none;
+}
+footer .footer-nav li {
+    margin-bottom: 12px;
+}
+footer .footer-nav a {
+    text-decoration: none;
+    color: var(--deep-navy);
+    font-size: 0.85rem;
+    opacity: 0.6;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+footer .footer-nav a:hover {
+    opacity: 1;
+    color: var(--accent-gold);
+    padding-right: 5px; /* Efeito no canto direito */
+}
+
+/* Social Icons */
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.social-links a {
+    font-size: 1.3rem;
+    color: var(--deep-navy);
+    opacity: 0.4;
+    transition: 0.4s;
+}
+
+.social-links a:hover {
+    opacity: 1;
+    transform: scale(1.2) rotate(8deg);
+    color: var(--accent-gold);
+}
+
+/* Barra inferior */
+.footer-bottom {
+    grid-column: span 12;
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.6rem;
+    font-weight: 800;
+}
+
+/* --- RESPONSIVIDADE (IMPORTANTE PARA NÃO QUEBRAR) --- */
+@media (max-width: 1024px) {
+    footer .footer-nav {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 no tablet */
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    footer {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    footer .footer-logo-area,
+    footer .footer-nav {
+        grid-column: span 1;
+        justify-items: center;
+        text-align: center;
+    }
+    footer .footer-nav {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .social-links {
+        justify-content: center;
+    }
+    footer .footer-logo-text {
+        font-size: 15vw;
+    }
+}
+
+/* --- COMPONENTE AUTO-AJUSTÁVEL --- */
+.study-card {
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ocupa a altura total da célula do grid */
+    width: 100%; /* Ocupa a largura total da célula do grid */
+    position: relative;
+    transition: all 0.4s var(--ease-out);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.study-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(21, 25, 77, 0.08);
+}
+
+/* Container da Imagem: Ele define a proporção, não importa o tamanho */
+.card-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Mantém sempre proporção de cinema */
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Corta a imagem sem distorcer */
+    transition: transform 0.6s var(--ease-out);
+}
+
+/* Corpo do Card: Flex-grow faz ele empurrar o rodapé do card para baixo */
+.card-body {
+    padding: clamp(15px, 3vw, 25px); /* Padding que diminui em telas menores */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.4rem); /* Título ajustável */
+    line-height: 1.2;
+    color: var(--deep-navy);
+    font-weight: 900;
+    margin: 10px 0;
+}
+
+.card-excerpt {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    line-height: 1.5;
+    /* Limita a 2 ou 3 linhas para não esticar demais o card */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Overlay e Link */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(21, 25, 77, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.3s;
+    backdrop-filter: blur(3px);
+}
+
+.study-card:hover .card-overlay {
+    opacity: 1;
+}
+.card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+}
+
+.read-more {
+    color: var(--white);
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    font-weight: 800;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 10px 20px;
+}
+
+.study-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    background: var(--dusty-gold);
+    font-size: 0.6rem;
+    font-weight: 800;
+    border-radius: 4px;
+}
+
+/* Container que alinha o texto e o dev no canto esquerdo */
+.footer-bottom-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+.footer-bottom-container span,
+.footer-bottom-container p {
+    opacity: 0.4;
+}
+
+/* Bloco do Desenvolvedor */
+.developer-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 20px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1); /* Linha divisória fina */
+}
+
+.developer-info span {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Logo Pulsante */
+.pulse-logo {
+    width: 25px; /* Tamanho pequeno e elegante */
+    height: auto;
+    display: block;
+    animation: pulse-animation 2s infinite ease-in-out;
+}
+
+/* Definição da Animação */
+@keyframes pulse-animation {
+    0% {
+        transform: scale3d(1, 1, 1);
+    }
+
+    10%,
+    20% {
+        transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    }
+
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    }
+
+    40%,
+    60%,
+    80% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+/* Ajuste para Mobile */
+@media (max-width: 768px) {
+    .footer-bottom-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .developer-info {
+        border-left: none;
+        padding-left: 0;
+    }
+}

@@ -1,0 +1,1259 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>RAC | Rede Apostólica Cristã</title>
+        <meta
+            name="description"
+            content="A Rede Apostólica Cristã é um conjunto de igrejas locais e autônomas aliançadas que se unem debaixo de uma liderança apostólico-profética para crescimento e multiplicação."
+        />
+        <meta
+            name="keywords"
+            content="igreja apostólica, rede de igrejas, estudos bíblicos, liderança cristã, multiplicação, profético"
+        />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://infosulst.com.br/" />
+        <meta property="og:title" content="Rede Apostólica Cristã (RAC)" />
+        <meta
+            property="og:description"
+            content="Conjunto de igrejas autônomas aliançadas debaixo de uma liderança apostólico-profética, focadas em crescimento e multiplicação."
+        />
+        <meta
+            property="og:image"
+            content="https://redeapostolica.com.br/uploads/logo-rac.png"
+        />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="RAC" />
+        <meta property="og:locale" content="pt_BR" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://infosulst.com.br/" />
+        <meta property="twitter:title" content="Rede Apostólica Cristã (RAC)" />
+        <meta
+            property="twitter:description"
+            content="Unindo igrejas locais sob uma visão apostólica para fortalecer o corpo de Cristo."
+        />
+        <meta
+            property="twitter:image"
+            content="https://redeapostolica.com.br/uploads/logo-rac.png"
+        />
+
+        <script src="https://redeapostolica.com.br/assets/js/loader.js"></script>
+
+        <script>
+            App_load.loadStyle(
+                "@fortawesome/fontawesome-free/css/all.min.css",
+                "node",
+            );
+            App_load.loadStyle("style.css", "app");
+            App_load.loadStyle(
+                "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@300;400;600;900&display=swap",
+            );
+        </script>
+        <style>
+            :root {
+                --primary-navy: #1a2a5a;
+                --accent-gold: #c5a059;
+                --glam-gold: #f3e5ab;
+            }
+
+            header {
+                color: var(--white);
+            }
+
+            .hero-main {
+                height: 100vh;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                /* Gradiente animado que simula uma nebulosa */
+                background: linear-gradient(
+                    -45deg,
+                    #0a1128,
+                    #1a2a5a,
+                    #2c3e50,
+                    #0f1c3f
+                );
+                background-size: 400% 400%;
+                animation: gradientShift 15s ease infinite;
+                overflow: hidden;
+                padding: 0;
+            }
+
+            #hero-canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 10;
+                text-align: center;
+            }
+
+            .hero-logo {
+                width: clamp(250px, 45vw, 550px) !important;
+                /* Filtro para dar brilho à logo e remover fundo se necessário */
+                filter: drop-shadow(0 0 30px rgba(197, 160, 89, 0.4));
+                animation: logoFloat 6s ease-in-out infinite;
+            }
+
+            .hero-subtitle {
+                margin-top: 3rem !important;
+                color: var(--accent-gold) !important;
+                letter-spacing: 8px !important;
+                font-weight: 800;
+                opacity: 0.9;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            }
+
+            /* Animações */
+            @keyframes gradientShift {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            @keyframes logoFloat {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-15px);
+                }
+            }
+
+            /* Reset de Segurança */
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            html,
+            body {
+                overflow-x: hidden;
+                width: 100%;
+                -webkit-font-smoothing: antialiased;
+                font-family: "Plus Jakarta Sans", sans-serif;
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 6%; /* Padding maior para respiro em telas pequenas */
+            }
+
+            section {
+                padding: 100px 0;
+                width: 100%;
+            }
+
+            .section-label {
+                font-weight: 800;
+                font-size: 0.65rem;
+                letter-spacing: 0.3em;
+                color: var(--accent-gold);
+                margin-bottom: 40px;
+                display: block;
+            }
+
+            /* Cores de Fundo */
+            .bg-blue {
+                background-color: var(--bg-blue);
+            }
+            .bg-gold {
+                background-color: var(--dusty-gold);
+            }
+            .bg-sage {
+                background-color: var(--bg-sage);
+            }
+
+            /* HERO - Impacto sem quebras */
+            .hero-main {
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 0 20px;
+            }
+            .hero-main h1 {
+                font-size: clamp(3.5rem, 18vw, 12rem);
+                color: var(--primary-navy);
+                font-family: "Outfit", sans-serif;
+                font-weight: 900;
+                line-height: 0.85;
+                margin-bottom: 10px;
+            }
+            .hero-main p {
+                margin-top: 5rem;
+                font-weight: 800;
+                letter-spacing: clamp(2px, 1.5vw, 6px);
+                opacity: 0.5;
+                font-size: clamp(0.6rem, 2.5vw, 0.85rem);
+            }
+            .hero-main img {
+                width: 40vw;
+            }
+
+            /* GRID MESTRA - Flexível */
+            .master-grid {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                gap: 30px;
+                width: 100%;
+            }
+
+            /* PROFILE CARD - Otimizado para Mobile */
+            .profile-card {
+                grid-column: span 12;
+                background: var(--white);
+                border-radius: 8px;
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+                display: flex;
+                flex-direction: row; /* Desktop */
+                align-items: stretch;
+                padding: 0; /* Remove padding para a imagem encostar no mobile */
+                overflow: hidden;
+            }
+
+            .profile-image-container {
+                flex: 0 0 400px;
+                height: auto;
+                min-height: 500px;
+            }
+            .profile-image-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .profile-content {
+                flex: 1;
+                padding: 60px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            /* ESTUDOS GRID */
+            .estudos-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 25px;
+            }
+
+            /* EVENTOS */
+            .evento-row {
+                display: grid;
+                grid-template-columns: 100px 1fr auto;
+                align-items: center;
+                padding: 40px 0;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                transition: 0.4s;
+                cursor: pointer;
+            }
+            .evento-row:hover {
+                padding-left: 20px;
+                color: var(--accent-gold);
+            }
+            .evento-data-box {
+                text-align: center;
+                border-right: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            .evento-dia {
+                font-size: 1.5rem;
+                font-weight: 900;
+                display: block;
+                font-family: "Outfit";
+            }
+            .evento-mes {
+                font-size: 0.7rem;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+            .evento-info {
+                padding: 0 40px;
+            }
+
+            /* STEP ITEMS (Fundamentos) */
+            .step-item {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                min-width: 150px;
+            }
+            .step-num {
+                font-family: "Outfit";
+                font-weight: 900;
+                font-size: 2rem;
+                opacity: 0.2;
+            }
+            .step-title {
+                font-weight: 800;
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+            }
+
+            /* ANIMATIONS */
+            .fade-up {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: 0.8s var(--ease-out);
+            }
+            .fade-up.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Container do Card */
+            .profile-card {
+                display: flex;
+                flex-direction: row; /* Lado a lado no desktop */
+                background: var(--white);
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+                width: 100%;
+                margin: 40px 0;
+            }
+
+            .profile-image-container {
+                flex: 0 0 400px; /* Largura fixa no desktop */
+                height: 500px;
+            }
+
+            .profile-image-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: top;
+            }
+
+            .profile-content {
+                flex: 1;
+                padding: 60px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .accent-line {
+                width: 60px;
+                height: 2px;
+                background: var(--accent-gold);
+                margin-bottom: 25px;
+            }
+            .profile-label {
+                font-size: 0.7rem;
+                font-weight: 800;
+                color: var(--accent-gold);
+                letter-spacing: 3px;
+            }
+            .profile-content h2 {
+                font-size: 3rem;
+                margin: 15px 0;
+                color: var(--primary-navy);
+                line-height: 1.1;
+            }
+            .profile-content p {
+                line-height: 1.8;
+                opacity: 0.8;
+                margin-bottom: 30px;
+            }
+
+            .profile-stats {
+                display: flex;
+                gap: 40px;
+                border-top: 1px solid #f0f0f0;
+                padding-top: 30px;
+            }
+            .stat-item h5 {
+                font-size: 0.6rem;
+                color: var(--accent-gold);
+                margin-bottom: 8px;
+            }
+            .stat-item p {
+                font-size: 0.85rem;
+                font-weight: 600;
+                margin-bottom: 0;
+            }
+
+            /* MEDIA QUERY - Onde corrigimos o desaparecimento/quebra no mobile */
+            @media (max-width: 992px) {
+                .profile-card {
+                    flex-direction: column; /* Empilha a imagem sobre o texto */
+                }
+
+                .profile-image-container {
+                    flex: none;
+                    width: 100%;
+                    height: 350px; /* Altura menor para telas pequenas */
+                }
+
+                .profile-content {
+                    padding: 40px 25px;
+                }
+
+                .profile-content h2 {
+                    font-size: 2rem;
+                }
+
+                .profile-stats {
+                    flex-direction: column;
+                    gap: 20px;
+                }
+            }
+
+            /* MEDIA QUERIES REVISADAS */
+            @media (max-width: 1024px) {
+                .profile-card {
+                    flex-direction: column;
+                }
+                .profile-image-container {
+                    flex: none;
+                    height: 400px;
+                    width: 100%;
+                }
+                .profile-content {
+                    padding: 40px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                section {
+                    padding: 60px 0;
+                }
+                .container {
+                    padding: 0 20px;
+                }
+
+                .hero-main img {
+                    width: 60vw;
+                }
+
+                .master-grid {
+                    gap: 20px;
+                }
+
+                .stagger-container {
+                    gap: 40px !important;
+                    justify-content: flex-start !important;
+                    padding-left: 10px;
+                }
+
+                .evento-row {
+                    padding: 20px 0;
+                }
+                .evento-row i {
+                    display: none;
+                } /* Remove ícone extra no mobile */
+            }
+
+            @media (max-width: 480px) {
+                .profile-image-container {
+                    height: 320px;
+                }
+                .profile-content {
+                    padding: 30px 20px;
+                }
+                .profile-content h2 {
+                    font-size: 2.2rem !important;
+                }
+
+                .evento-data-box {
+                    flex: 0 0 55px;
+                }
+                .evento-dia {
+                    font-size: 1.4rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="hero-main">
+            <canvas id="hero-canvas"></canvas>
+
+            <div class="hero-content">
+                <img
+                    src="./951dc592313d309e566d85859390ccbe.webp"
+                    alt="Logo Rede Apostólica Cristã"
+                    class="hero-logo"
+                />
+                <p class="hero-subtitle">CONTEÚDO • GOVERNO • ALIANÇA</p>
+            </div>
+        </main>
+
+        <section
+            id="tema-do-ano"
+            style="
+                padding: 140px 0;
+                background: var(--dusty-gold);
+                position: relative;
+                overflow: hidden;
+            "
+        >
+            <div
+                style="
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-family: &quot;Outfit&quot;;
+                    font-size: clamp(10rem, 30vw, 25rem);
+                    font-weight: 900;
+                    color: rgba(197, 160, 89, 0.08);
+                    z-index: 1;
+                    pointer-events: none;
+                    white-space: nowrap;
+                "
+            >
+                2026
+            </div>
+
+            <div
+                class="container-refined"
+                style="position: relative; z-index: 2"
+            >
+                <div
+                    style="max-width: 900px; margin: 0 auto; text-align: center"
+                >
+                    <div class="fade-up">
+                        <span
+                            style="
+                                font-size: 0.9rem;
+                                font-weight: 800;
+                                color: #c5a059;
+                                letter-spacing: 5px;
+                                text-transform: uppercase;
+                                display: block;
+                                margin-bottom: 20px;
+                            "
+                        >
+                            Propósito Profético
+                        </span>
+
+                        <h2
+                            style="
+                                font-family: &quot;Outfit&quot;;
+                                font-size: clamp(3rem, 8vw, 5rem);
+                                font-weight: 900;
+                                color: var(--primary-navy);
+                                line-height: 0.9;
+                                margin: 0;
+                            "
+                        >
+                            O ANO DAS<br />
+                            <span style="color: #c5a059">GRANDES MUDANÇAS</span>
+                        </h2>
+
+                        <div
+                            style="
+                                width: 80px;
+                                height: 4px;
+                                background: var(--primary-navy);
+                                margin: 40px auto;
+                            "
+                        ></div>
+
+                        <p
+                            style="
+                                font-family: &quot;Plus Jakarta Sans&quot;;
+                                font-size: clamp(1.2rem, 3vw, 1.6rem);
+                                color: #4a5568;
+                                line-height: 1.5;
+                                font-weight: 400;
+                                max-width: 750px;
+                                margin: 0 auto 30px;
+                            "
+                        >
+                            2026 está destinado para ser um ano onde a conexão
+                            entre o céu e a terra será intensificada. Isto
+                            produzirá coisas que normalmente não são rotineiras
+                            e naturais.
+                        </p>
+
+                        <p
+                            style="
+                                font-family: &quot;Outfit&quot;;
+                                font-size: 1rem;
+                                font-weight: 700;
+                                color: var(--primary-navy);
+                                letter-spacing: 2px;
+                                text-transform: uppercase;
+                                margin-bottom: 50px;
+                                opacity: 0.8;
+                            "
+                        >
+                            Eclesiastes 3:1-8
+                        </p>
+
+                        <a
+                            href="tema.html"
+                            class="btn-gold"
+                            style="
+                                display: inline-block;
+                                padding: 18px 45px;
+                                background: var(--primary-navy);
+                                color: var(--white);
+                                text-decoration: none;
+                                font-family: &quot;Outfit&quot;;
+                                font-weight: 800;
+                                font-size: 0.9rem;
+                                letter-spacing: 2px;
+                                border-radius: 4px;
+                                transition: 0.3s;
+                                box-shadow: 0 10px 20px rgba(26, 32, 44, 0.2);
+                            "
+                        >
+                            CONHECER A PALAVRA
+                            <i
+                                class="arrow-right"
+                                style="margin-left: 10px; font-size: 0.8rem"
+                            ></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fundamentos" class="bg-sage">
+            <div class="container">
+                <span class="section-label">00 / FUNDAMENTOS</span>
+
+                <div class="master-grid" style="margin-bottom: 120px">
+                    <div
+                        class="fade-up"
+                        style="grid-column: span 12; max-width: 1000px"
+                    >
+                        <h2
+                            style="
+                                font-size: clamp(3rem, 8vw, 6rem);
+                                margin-bottom: 40px;
+                                color: var(--deep-navy);
+                                letter-spacing: -0.04em;
+                            "
+                        >
+                            Quem Somos
+                        </h2>
+                        <p
+                            style="
+                                font-size: 1.5rem;
+                                line-height: 1.4;
+                                color: var(--deep-navy);
+                                font-weight: 300;
+                                margin-bottom: 30px;
+                            "
+                        >
+                            A <strong>Rede Apostólica Cristã</strong> é um corpo
+                            de igrejas e ministérios aliançados sob liderança
+                            apostólica para fortalecimento e multiplicação
+                            estratégica.
+                        </p>
+                        <div
+                            style="
+                                display: flex;
+                                gap: 20px;
+                                align-items: flex-start;
+                                opacity: 0.7;
+                            "
+                        >
+                            <i
+                                class="fa-quote"
+                                size="40"
+                                style="color: var(--accent-gold)"
+                            ></i>
+                            <p
+                                style="
+                                    font-size: 1.1rem;
+                                    line-height: 1.6;
+                                    font-style: italic;
+                                "
+                            >
+                                Jesus disse que o Reino de Deus é semelhante a
+                                uma rede (Mt 13:47). Quanto mais nos aproximamos
+                                do Seu estabelecimento na terra, mais a
+                                estrutura da igreja reflete essa unidade.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="master-grid" style="margin-bottom: 120px">
+                    <div
+                        class="fade-up"
+                        style="
+                            grid-column: span 12;
+                            border-top: 1px solid rgba(0, 0, 0, 0.1);
+                            padding-top: 40px;
+                        "
+                    >
+                        <h3
+                            style="
+                                font-size: 0.7rem;
+                                letter-spacing: 3px;
+                                color: var(--accent-gold);
+                                margin-bottom: 40px;
+                            "
+                        >
+                            OPERACIONALIZAÇÃO
+                        </h3>
+                        <div
+                            style="
+                                display: grid;
+                                grid-template-columns: repeat(
+                                    auto-fit,
+                                    minmax(280px, 1fr)
+                                );
+                                gap: 40px;
+                            "
+                        >
+                            <div class="hover-card">
+                                <h4
+                                    style="
+                                        font-size: 1.5rem;
+                                        margin-bottom: 15px;
+                                    "
+                                >
+                                    Presbitério
+                                </h4>
+                                <p
+                                    style="
+                                        font-size: 0.95rem;
+                                        opacity: 0.7;
+                                        line-height: 1.6;
+                                    "
+                                >
+                                    Estrutura que governa, dirige e pastoreia a
+                                    igreja local em sua própria localidade.
+                                </p>
+                            </div>
+                            <div class="hover-card">
+                                <h4
+                                    style="
+                                        font-size: 1.5rem;
+                                        margin-bottom: 15px;
+                                    "
+                                >
+                                    Equipes Apostólicas
+                                </h4>
+                                <p
+                                    style="
+                                        font-size: 0.95rem;
+                                        opacity: 0.7;
+                                        line-height: 1.6;
+                                    "
+                                >
+                                    Responsáveis pela expansão do Reino além das
+                                    fronteiras, onde o evangelho ainda não foi
+                                    pregado.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fade-up" style="grid-column: span 12">
+                        <div class="profile-card fade-up">
+                            <div class="profile-image-container">
+                                <img
+                                    src="https://ricardowagneroficial.com.br/static/media/ricardo-wagner-valores.51156b6733da9e1f54cc.png"
+                                    alt="Ap. Ricardo Wagner"
+                                />
+                            </div>
+
+                            <div class="profile-content">
+                                <div class="accent-line"></div>
+                                <span class="profile-label"
+                                    >LIDERANÇA SÊNIOR</span
+                                >
+                                <h2>Ap. Ricardo Wagner</h2>
+                                <p>
+                                    Doutor na área de Liderança e Mestre em
+                                    Engenharia Estratégica pela UFRGS, o
+                                    Apóstolo Ricardo Wagner combina profundidade
+                                    teológica com visão organizacional de alto
+                                    nível.
+                                </p>
+
+                                <div class="profile-stats">
+                                    <div class="stat-item">
+                                        <h5>FORMAÇÃO</h5>
+                                        <p>
+                                            Doutorado em Liderança<br />Mestrado
+                                            Eng. Estratégica
+                                        </p>
+                                    </div>
+                                    <div class="stat-item">
+                                        <h5>MINISTÉRIO</h5>
+                                        <p>
+                                            Líder Sênior da RAC<br />Centro
+                                            Apostólico (30+ anos)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="stagger-container"
+                    style="
+                        border-top: 1px solid rgba(0, 0, 0, 0.06);
+                        padding-top: 100px;
+                        margin-top: 40px;
+                    "
+                >
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 20px;
+                            margin-bottom: 80px;
+                        "
+                    >
+                        <div
+                            style="
+                                width: 40px;
+                                height: 1px;
+                                background: linear-gradient(
+                                    to left,
+                                    var(--accent-gold),
+                                    transparent
+                                );
+                            "
+                        ></div>
+                        <h3
+                            style="
+                                text-align: center;
+                                font-size: 0.8rem;
+                                font-weight: 800;
+                                letter-spacing: 5px;
+                                color: var(--accent-gold);
+                                text-transform: uppercase;
+                                margin: 0;
+                            "
+                        >
+                            Propósito da Igreja Local
+                        </h3>
+                        <div
+                            style="
+                                width: 40px;
+                                height: 1px;
+                                background: linear-gradient(
+                                    to right,
+                                    var(--accent-gold),
+                                    transparent
+                                );
+                            "
+                        ></div>
+                    </div>
+
+                    <div
+                        style="
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: center;
+                            gap: 40px;
+                        "
+                    >
+                        <div
+                            class="step-item fade-up"
+                            style="
+                                flex: 1;
+                                min-width: 200px;
+                                max-width: 250px;
+                                text-align: center;
+                                padding: 20px;
+                                transition: transform 0.3s ease;
+                            "
+                        >
+                            <span
+                                style="
+                                    font-family: &quot;Outfit&quot;;
+                                    font-size: 3.5rem;
+                                    font-weight: 900;
+                                    color: rgba(197, 160, 89, 0.15);
+                                    line-height: 1;
+                                    display: block;
+                                    margin-bottom: -25px;
+                                "
+                                >01</span
+                            >
+                            <h5
+                                style="
+                                    font-family: &quot;Outfit&quot;;
+                                    font-size: 1.1rem;
+                                    font-weight: 800;
+                                    color: var(--primary-navy);
+                                    letter-spacing: 1px;
+                                    position: relative;
+                                    z-index: 1;
+                                "
+                            >
+                                GERAR DISCÍPULOS
+                            </h5>
+                            <div
+                                style="
+                                    width: 20px;
+                                    height: 2px;
+                                    background: var(--accent-gold);
+                                    margin: 15px auto 0;
+                                "
+                            ></div>
+                        </div>
+
+                        <div
+                            class="step-item fade-up"
+                            style="
+                                flex: 1;
+                                min-width: 200px;
+                                max-width: 250px;
+                                text-align: center;
+                                padding: 20px;
+                                transition: transform 0.3s ease;
+                            "
+                        >
+                            <span
+                                style="
+                                    font-family: &quot;Outfit&quot;;
+                                    font-size: 3.5rem;
+                                    font-weight: 900;
+                                    color: rgba(197, 160, 89, 0.15);
+                                    line-height: 1;
+                                    display: block;
+                                    margin-bottom: -25px;
+                                "
+                                >02</span
+                            >
+                            <h5
+                                style="
+                                    font-family: &quot;Outfit&quot;;
+                                    font-size: 1.1rem;
+                                    font-weight: 800;
+                                    color: var(--primary-navy);
+                                    letter-spacing: 1px;
+                                    position: relative;
+                                    z-index: 1;
+                                "
+                            >
+                                VIDA EM CÉLULAS
+                            </h5>
+                            <div
+                                style="
+                                    width: 20px;
+                                    height: 2px;
+                                    background: var(--accent-gold);
+                                    margin: 15px auto 0;
+                                "
+                            ></div>
+                        </div>
+
+                        <div
+                            class="step-item fade-up"
+                            style="
+                                flex: 1;
+                                min-width: 200px;
+                                max-width: 250px;
+                                text-align: center;
+                                padding: 20px;
+                                transition: transform 0.3s ease;
+                            "
+                        >
+                            <span
+                                style="
+                                    font-family: &quot;Outfit&quot;;
+                                    font-size: 3.5rem;
+                                    font-weight: 900;
+                                    color: rgba(197, 160, 89, 0.15);
+                                    line-height: 1;
+                                    display: block;
+                                    margin-bottom: -25px;
+                                "
+                                >03</span
+                            >
+                            <h5
+                                style="
+                                    font-family: &quot;Outfit&quot;;
+                                    font-size: 1.1rem;
+                                    font-weight: 800;
+                                    color: var(--primary-navy);
+                                    letter-spacing: 1px;
+                                    position: relative;
+                                    z-index: 1;
+                                "
+                            >
+                                EXCELÊNCIA
+                            </h5>
+                            <div
+                                style="
+                                    width: 20px;
+                                    height: 2px;
+                                    background: var(--accent-gold);
+                                    margin: 15px auto 0;
+                                "
+                            ></div>
+                        </div>
+
+                        <div
+                            class="step-item fade-up"
+                            style="
+                                flex: 1;
+                                min-width: 200px;
+                                max-width: 250px;
+                                text-align: center;
+                                padding: 30px 20px;
+                                background: var(--dusty-gold);
+                                border-radius: 4px;
+                                box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1);
+                                transition: transform 0.3s ease;
+                            "
+                        >
+                            <span
+                                style="
+                                    font-family: &quot;Outfit&quot;;
+                                    font-size: 3.5rem;
+                                    font-weight: 900;
+                                    color: var(--accent-gold);
+                                    opacity: 0.3;
+                                    line-height: 1;
+                                    display: block;
+                                    margin-bottom: -25px;
+                                "
+                                >04</span
+                            >
+                            <h5
+                                style="
+                                    font-family: &quot;Outfit&quot;;
+                                    font-size: 1.1rem;
+                                    font-weight: 900;
+                                    color: var(--accent-gold);
+                                    letter-spacing: 1px;
+                                    position: relative;
+                                    z-index: 1;
+                                "
+                            >
+                                VIVER O HOJE
+                            </h5>
+                            <div
+                                style="
+                                    width: 40px;
+                                    height: 2px;
+                                    background: var(--accent-gold);
+                                    margin: 15px auto 0;
+                                "
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="estudos" class="bg-blue">
+            <div class="container">
+                <span class="section-label">01 / ESTUDOS RECENTES</span>
+                <div id="featured-estudos" class="estudos-grid"></div>
+                <div
+                    style="text-align: center; margin-top: 60px"
+                    class="fade-up"
+                >
+                    <a
+                        href="estudos"
+                        class="btn-filiar"
+                        style="
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 15px;
+                            padding: 20px 40px;
+                            background: transparent;
+                            border: 1px solid var(--accent-gold);
+                            color: var(--accent-gold);
+                        "
+                    >
+                        VER BIBLIOTECA COMPLETA
+                        <i class="fa-layers" size="18"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="eventos" class="bg-gold">
+            <div class="container">
+                <span class="section-label">02 / AGENDA GLOBAL</span>
+                <div id="events-container" class="agenda-list"></div>
+            </div>
+        </section>
+
+        <script src="./assets/js/config.js"></script>
+        <script src="./assets/js/components.js"></script>
+        <script>
+            async function loadFeaturedStudies() {
+                const container = document.getElementById("featured-estudos");
+                if (!container) return;
+
+                try {
+                    // Busca apenas os 3 primeiros registros para manter o layout da Home
+                    const res = await fetch(
+                        `${CONFIG.API_BASE_URL}${CONFIG.ENDPOINTS.ESTUDOS}?limit=3`,
+                    );
+                    const json = await res.json();
+                    if (json.data.length > 0) {
+                        // Utiliza a função global definida no components.js para criar os cards
+                        container.innerHTML = json.data
+                            .map((item) => window.createStudyCard(item))
+                            .join("");
+
+                        revealContent();
+                    } else {
+                        container.innerHTML =
+                            '<p style="opacity:0.5; grid-column: 1/-1; text-align:center;">Nenhum estudo disponível no momento.</p>';
+                    }
+                } catch (err) {
+                    console.error("Erro ao carregar estudos:", err);
+                    container.innerHTML =
+                        '<p style="opacity:0.5; grid-column: 1/-1; text-align:center;">Erro ao conectar com a biblioteca.</p>';
+                }
+            }
+
+            async function loadEvents() {
+                const container = document.getElementById("events-container");
+                if (!container) return;
+
+                try {
+                    const res = await fetch(
+                        `${CONFIG.API_BASE_URL}${CONFIG.ENDPOINTS.AGENDA}?&include_past=false`,
+                    );
+                    const json = await res.json();
+
+                    // Como a sua API retorna um array direto:
+                    if (Array.isArray(json.data) && json.data.length > 0) {
+                        container.innerHTML = json.data
+                            .map((event) => {
+                                // Tratamento da data (2026-04-02T20:00:00.000Z)
+                                const dateParts = event.event_date
+                                    .split("T")[0]
+                                    .split("-");
+                                const dateObj = new Date(
+                                    dateParts[0],
+                                    dateParts[1] - 1,
+                                    dateParts[2],
+                                );
+
+                                const dia = dateParts[2];
+                                const mes = dateObj
+                                    .toLocaleString("pt-BR", { month: "short" })
+                                    .replace(".", "");
+
+                                return `
+                            <div class="evento-row fade-up">
+                                <div class="evento-data-box">
+                                    <span class="evento-dia">${dia}</span>
+                                    <span class="evento-mes">${mes}</span>
+                                </div>
+                                <div class="evento-info">
+                                    <h3>${event.name}</h3>
+                                    <p>${event.location}</p>
+                                </div>
+                                <i class="fa-solid fa-plus" style="opacity: 0.2;"></i>
+                            </div>
+                        `;
+                            })
+                            .join("");
+
+                        revealContent(); // Chama a animação de fade
+                    }
+                } catch (err) {
+                    console.error("Erro API Agenda:", err);
+                    container.innerHTML =
+                        '<p style="padding: 20px; opacity: 0.5;">Agenda temporariamente indisponível.</p>';
+                }
+            }
+            // Adicione a chamada dentro do seu DOMContentLoaded
+            document.addEventListener("DOMContentLoaded", () => {
+                loadEvents(); // Carrega a agenda
+                loadFeaturedStudies(); // Carrega os estudos (já existente)
+                revealContent();
+            });
+
+            /**
+             * Inicialização única dos eventos da página
+             */
+            document.addEventListener("DOMContentLoaded", () => {
+                // NOTA: Não chamamos initRAC() aqui pois o components.js
+                // já o executa automaticamente ao carregar.
+
+                // Carrega os dados da API
+                loadFeaturedStudies();
+
+                // Executa uma primeira vez para itens já visíveis no topo
+                revealContent();
+            });
+
+            const canvas = document.getElementById("hero-canvas");
+            const ctx = canvas.getContext("2d");
+
+            let particles = [];
+            function initCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            class LightParticle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 0.2;
+                    this.speed = Math.random() * 0.5 + 0.1;
+                    this.opacity = Math.random();
+                }
+                update() {
+                    this.y -= this.speed;
+                    if (this.y < 0) this.reset();
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(197, 160, 89, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < 100; i++) particles.push(new LightParticle());
+
+            function animateHero() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p) => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animateHero);
+            }
+
+            window.addEventListener("resize", initCanvas);
+            initCanvas();
+            animateHero();
+        </script>
+    </body>
+</html>

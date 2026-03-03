@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Igrejas | RAC</title>
+
+        <script src="https://redeapostolica.com.br/assets/js/loader.js"></script>
+
+        <script>
+            App_load.loadStyle(
+                "@fortawesome/fontawesome-free/css/all.min.css",
+                "node",
+            );
+            App_load.loadStyle("style.css", "app");
+            App_load.loadStyle(
+                "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@300;400;600;900&display=swap",
+            );
+        </script>
+
+        <style>
+            .archive-hero {
+                padding: 140px 5% 80px;
+                background: linear-gradient(135deg, #f1ede1 0%, #eaddca 100%);
+                text-align: center;
+                clip-path: ellipse(150% 100% at 50% 0%);
+            }
+
+            .archive-hero span {
+                color: var(--accent-gold);
+                font-weight: 800;
+                letter-spacing: 4px;
+                text-transform: uppercase;
+                font-size: 0.75rem;
+                display: block;
+                margin-bottom: 15px;
+            }
+
+            .archive-hero h1 {
+                font-family: "Outfit", sans-serif;
+                font-size: clamp(3rem, 8vw, 5rem);
+                font-weight: 900;
+                line-height: 0.9;
+                letter-spacing: -2px;
+                margin-bottom: 20px;
+            }
+
+            /* --- TOOLBAR DE BUSCA (ESTILO ESTUDOS) --- */
+            .toolbar {
+                max-width: 800px; /* Ajustado para o layout de igrejas */
+                margin: -40px auto 60px; /* Faz a barra flutuar sobre o hero */
+                background: var(--white);
+                padding: 15px 15px 15px 30px;
+                border-radius: 100px; /* Formato de pílula */
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+                display: flex;
+                align-items: center;
+                position: relative;
+                z-index: 10;
+                border: 1px solid rgba(197, 160, 89, 0.1);
+            }
+
+            .search-box {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .search-box svg {
+                color: var(--accent-gold);
+                stroke-width: 2.5px;
+                width: 20px;
+                height: 20px;
+            }
+
+            .search-box input {
+                border: none;
+                outline: none;
+                font-family: "Plus Jakarta Sans", sans-serif;
+                font-size: 1rem;
+                width: 100%;
+                font-weight: 500;
+                color: var(--primary-navy);
+            }
+
+            #map {
+                width: 100%;
+                height: 450px;
+                background: #eee;
+                margin-bottom: 60px;
+                border-radius: 4px;
+                overflow: hidden;
+            }
+
+            .church-grid {
+                display: grid;
+                grid-template-columns: repeat(
+                    auto-fill,
+                    min-minmax(300px, 1fr)
+                );
+                gap: 30px;
+                margin-bottom: 100px;
+            }
+
+            .church-grid {
+                display: grid;
+                /* Altera o minmax para 300px para permitir 4 colunas em telas grandes */
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 25px;
+                margin: 40px 0 100px;
+                width: 100%;
+            }
+
+            /* Ajuste de responsividade para telas muito grandes (Desktops 4k/Ultrawide) */
+            @media (min-width: 1400px) {
+                .church-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+
+            /* Ajuste para Tablets */
+            @media (max-width: 992px) {
+                .church-grid {
+                    grid-template-columns: repeat(
+                        auto-fill,
+                        minmax(280px, 1fr)
+                    );
+                }
+            }
+
+            /* Ajuste para Mobile */
+            @media (max-width: 480px) {
+                .church-grid {
+                    grid-template-columns: 1fr; /* Um por linha no celular para não esmagar o texto */
+                }
+            }
+
+            /* --- RESPONSIVIDADE --- */
+            @media (max-width: 992px) {
+                .toolbar {
+                    border-radius: 24px;
+                    flex-direction: column;
+                    padding: 25px;
+                    margin-left: 20px;
+                    margin-right: 20px;
+                }
+                .search-box,
+                .filter-group {
+                    width: 100%;
+                    flex: none;
+                }
+                .filter-group {
+                    justify-content: center;
+                }
+                .view-options {
+                    display: none;
+                }
+            }
+
+            /* Container com os mesmos respiros da página de estudos (5% lateral) */
+            .container-refined {
+                width: 100%;
+                max-width: 1400px; /* Ajuste conforme o seu padrão de largura máxima */
+                margin: 0 auto;
+                padding: 0 5%;
+            }
+
+            .church-grid {
+                display: grid;
+                /* Define o tamanho mínimo de 320px para os cards */
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 30px;
+                margin: 60px 0 100px;
+            }
+
+            /* Trava em no máximo 3 colunas em telas Desktop */
+            @media (min-width: 1024px) {
+                .church-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="site-header"></div>
+
+        <main>
+            <section class="archive-hero">
+                <div class="reveal">
+                    <span>Nossas Unidades</span>
+                    <h1>
+                        Encontre uma <br /><span
+                            style="color: var(--accent-gold)"
+                            >Igreja RAC</span
+                        >
+                    </h1>
+                    <p
+                        style="
+                            max-width: 600px;
+                            margin: 20px auto 0;
+                            opacity: 0.7;
+                            font-weight: 500;
+                        "
+                    >
+                        Faça parte da nossa família. Localize a unidade mais
+                        próxima de você e consulte horários e endereços.
+                    </p>
+                </div>
+            </section>
+
+            <div class="toolbar reveal">
+                <div class="search-box">
+                    <i class="fa-search"></i>
+                    <input
+                        id="searchInput"
+                        type="text"
+                        placeholder="Busque por cidade, bairro ou nome..."
+                    />
+                </div>
+            </div>
+
+            <div
+                id="map"
+                style="
+                    width: 100%;
+                    height: 500px;
+                    margin-bottom: 60px;
+                    border-radius: 0;
+                "
+            ></div>
+            <section class="container-refined">
+                <div id="churchList" class="church-grid"></div>
+            </section>
+        </main>
+
+        <div id="site-footer"></div>
+
+        <script src="./assets/js/config.js"></script>
+        <script src="./assets/js/components.js"></script>
+
+        <script>
+            const config = {
+                GOOGLE_MAPS_API_KEY: "AIzaSyCCUtozxekXXRIZbCzItYVpiTirAnVZ1xI",
+                MAP_ID: "431fe4057a440649ab7516b5",
+                CHURCHES_API_URL: "igrejas.json", // O arquivo JSON deve conter os campos "lat" e "lng"
+            };
+
+            let map,
+                churches = [],
+                markers = [];
+            let bounds,
+                currentInfoWindow = null;
+
+            // Inicialização principal do Google Maps
+            window.initGoogleMaps = async () => {
+                const { Map } = await google.maps.importLibrary("maps");
+                const { AdvancedMarkerElement } =
+                    await google.maps.importLibrary("marker");
+                const { LatLngBounds } =
+                    await google.maps.importLibrary("core");
+
+                bounds = new LatLngBounds();
+
+                // Centralização inicial no RS enquanto os dados carregam
+                map = new Map(document.getElementById("map"), {
+                    zoom: 8,
+                    mapId: config.MAP_ID,
+                    center: { lat: -29.5123, lng: -51.8859215 },
+                });
+
+                await fetchChurches(AdvancedMarkerElement);
+            };
+
+            // Busca os dados do JSON e inicializa a interface
+            async function fetchChurches(AdvancedMarkerElement) {
+                try {
+                    const response = await fetch(config.CHURCHES_API_URL);
+                    churches = await response.json();
+
+                    // 1. Renderiza a lista de cards na grid
+                    displayChurches(churches);
+
+                    // 2. Coloca os marcadores no mapa usando as coordenadas prontas
+                    initMapMarkers(AdvancedMarkerElement);
+
+                    // 3. Ativa o filtro de busca sincronizado
+                    initSearch();
+                } catch (error) {
+                    console.error("Erro ao carregar dados das igrejas:", error);
+                }
+            }
+
+            // Cria os marcadores usando apenas os dados estáticos do JSON
+            function initMapMarkers(AdvancedMarkerElement) {
+                churches.forEach((church) => {
+                    if (church.lat && church.lng) {
+                        const position = {
+                            lat: parseFloat(church.lat),
+                            lng: parseFloat(church.lng),
+                        };
+
+                        bounds.extend(position);
+
+                        const marker = new AdvancedMarkerElement({
+                            map,
+                            position,
+                            title: church.nome,
+                        });
+
+                        marker.churchData = church;
+                        markers.push(marker);
+
+                        const infoWindow = new google.maps.InfoWindow({
+                            content: `
+                            <div style="font-family: 'Plus Jakarta Sans', sans-serif; padding: 10px; max-width: 200px;">
+                                <h4 style="margin: 0 0 5px; color: #1a1a1a;">${church.nome}</h4>
+                                <p style="margin: 0; font-size: 12px; color: #666;">${church.endereco}</p>
+                                <hr style="margin: 8px 0; border: 0; border-top: 1px solid #eee;">
+                                <p style="margin: 0; font-size: 11px; font-weight: bold; color: #c5a059;">UNIDADE ATIVA</p>
+                            </div>
+                        `,
+                        });
+
+                        // NOVO: Evento ao fechar o balão (InfoWindow)
+                        infoWindow.addListener("closeclick", () => {
+                            const term = document
+                                .getElementById("searchInput")
+                                .value.toLowerCase()
+                                .trim();
+
+                            // Se houver busca, mantém apenas os filtrados. Se não, mostra todos.
+                            markers.forEach((m) => {
+                                const isMatch =
+                                    m.title.toLowerCase().includes(term) ||
+                                    m.churchData.endereco
+                                        .toLowerCase()
+                                        .includes(term);
+                                m.map = isMatch ? map : null;
+                            });
+
+                            // Reajusta o zoom para mostrar todos os pins visíveis
+                            if (term === "") {
+                                map.fitBounds(bounds);
+                            } else {
+                                const filteredBounds =
+                                    new google.maps.LatLngBounds();
+                                markers.forEach((m) => {
+                                    if (m.map)
+                                        filteredBounds.extend(m.position);
+                                });
+                                if (!filteredBounds.isEmpty())
+                                    map.fitBounds(filteredBounds);
+                            }
+                        });
+
+                        marker.addListener("click", () => {
+                            if (currentInfoWindow) currentInfoWindow.close();
+                            infoWindow.open(map, marker);
+                            currentInfoWindow = infoWindow;
+                            map.panTo(position);
+                            map.setZoom(15);
+                        });
+                    }
+                });
+
+                if (!bounds.isEmpty()) {
+                    map.fitBounds(bounds);
+                }
+            }
+
+            function displayChurches(data) {
+                const churchList = document.getElementById("churchList");
+                churchList.innerHTML = "";
+
+                if (data.length === 0) {
+                    churchList.innerHTML = `<p style="grid-column: 1/-1; text-align: center; opacity: 0.5; padding: 50px;">Nenhuma unidade encontrada.</p>`;
+                    return;
+                }
+
+                data.forEach((church) => {
+                    // Lógica para formatar a lista de pastores com a separação por "e"
+                    let listaPastores = "";
+                    if (
+                        Array.isArray(church.pastores) &&
+                        church.pastores.length > 0
+                    ) {
+                        if (church.pastores.length === 1) {
+                            listaPastores = church.pastores[0];
+                        } else if (church.pastores.length === 2) {
+                            listaPastores = church.pastores.join(" e ");
+                        } else {
+                            const ultimo =
+                                church.pastores[church.pastores.length - 1];
+                            const demais = church.pastores
+                                .slice(0, -1)
+                                .join(", ");
+                            listaPastores = `${demais} e ${ultimo}`;
+                        }
+                    }
+
+                    const listaCultos =
+                        Array.isArray(church.horario_culto) &&
+                        church.horario_culto.length > 0
+                            ? church.horario_culto.join("<br>")
+                            : "Consulte a secretaria";
+
+                    const card = document.createElement("div");
+                    card.className = "church-item";
+                    card.innerHTML = `
+                    <div class="card-inner" style="background:var(--white); border: 1px solid rgba(0,0,0,0.05); padding: 35px; transition: all 0.4s ease; display: flex; flex-direction: column; height: 100%; cursor: pointer; position: relative;">
+                        
+                        <h3 style="font-family: 'Outfit'; font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; color: var(--deep-navy);">${church.nome}</h3>
+                        
+                        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px;">
+                            <i class="fa-solid fa-user-tie" style="color: #c5a059; margin-top: 3px; font-size: 0.9rem;"></i>
+                            <p style="font-size: 0.85rem; color: #444; line-height: 1.4;">
+                                ${listaPastores || "Liderança local"}
+                            </p>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 25px;">
+                            <i class="fa-solid fa-location-dot" style="color: #c5a059; margin-top: 3px; font-size: 0.9rem;"></i>
+                            <p style="font-size: 0.85rem; color: #666; line-height: 1.4;">${church.endereco}</p>
+                        </div>
+                        
+                        <div style="background: #f9f9f7; padding: 20px; border-left: 3px solid #c5a059; margin-top: auto;">
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                                <i class="fa-solid fa-calendar-check" style="color: #c5a059; font-size: 0.75rem;"></i>
+                                <p style="font-size: 0.7rem; font-weight: bold; color: #c5a059; text-transform: uppercase; letter-spacing: 1px;">CULTOS:</p>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #333; font-weight: 500;">${listaCultos}</p>
+                        </div>
+                    </div>
+                `;
+
+                    card.addEventListener("click", () => {
+                        const marker = markers.find(
+                            (m) => m.title === church.nome,
+                        );
+                        if (marker) {
+                            window.scrollTo({
+                                top:
+                                    document.getElementById("map").offsetTop -
+                                    100,
+                                behavior: "smooth",
+                            });
+                            google.maps.event.trigger(marker, "click");
+                        }
+                    });
+
+                    churchList.appendChild(card);
+                });
+            }
+
+            // Sistema de busca que filtra Grid e Mapa simultaneamente
+            function initSearch() {
+                const searchInput = document.getElementById("searchInput");
+
+                searchInput.addEventListener("input", () => {
+                    const term = searchInput.value.toLowerCase().trim();
+
+                    const filtered = churches.filter(
+                        (c) =>
+                            c.nome.toLowerCase().includes(term) ||
+                            c.endereco.toLowerCase().includes(term),
+                    );
+
+                    displayChurches(filtered);
+
+                    // Atualiza a visibilidade dos marcadores baseada no termo de busca
+                    markers.forEach((marker) => {
+                        const isMatch =
+                            marker.title.toLowerCase().includes(term) ||
+                            marker.churchData.endereco
+                                .toLowerCase()
+                                .includes(term);
+                        marker.map = isMatch ? map : null;
+                    });
+
+                    if (term === "" && !bounds.isEmpty()) {
+                        map.fitBounds(bounds);
+                    }
+                });
+            }
+
+            // Carregamento assíncrono do SDK do Google Maps
+            const googleMapsScript = document.createElement("script");
+            googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${config.GOOGLE_MAPS_API_KEY}&loading=async&callback=initGoogleMaps`;
+            googleMapsScript.async = true;
+            document.head.appendChild(googleMapsScript);
+
+            document.addEventListener("DOMContentLoaded", () => {
+                // Inicializa o Header e Footer do RAC
+                if (window.renderHeader) window.renderHeader("site-header");
+                if (window.renderFooter) window.renderFooter("site-footer");
+
+                // Ativa animações de revelação (se houver no components.js)
+                if (window.revealContent) window.revealContent();
+            });
+        </script>
+    </body>
+</html>

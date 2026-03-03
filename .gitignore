@@ -1,0 +1,6 @@
+/site
+/backend
+/frontend
+/uploads
+env.*
+igrejas.json
